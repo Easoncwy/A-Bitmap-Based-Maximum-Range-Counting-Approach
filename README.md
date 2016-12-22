@@ -4,3 +4,5 @@
 This algorithm is based on bitmap structure.
 
 It can be applied to areas like advertising and activity organization.
+
+Query、Inert、Delete operations are allowed in this algorithm. 
