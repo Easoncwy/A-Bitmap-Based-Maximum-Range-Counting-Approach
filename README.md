@@ -1,8 +1,18 @@
 # A_query_algorithm_based_on_bitmap
-一种基于bitmap索引结构的查询算法
+## abstract 
 
 This algorithm is based on bitmap structure.
 
 It can be applied to areas like advertising and activity organization.
 
 Query、Inert、Delete operations are allowed in this algorithm. 
+
+## each module
+
+Entity: some entities 
+
+File: some file operations 
+
+Main: main method
+
+Method: the algorithm and other sorting method
