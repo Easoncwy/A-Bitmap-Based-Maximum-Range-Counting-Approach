@@ -22,11 +22,12 @@ import Method.Time;
 public class RawFileRead {
 	
 	/**
-	 * 
+	 * 读取原始文件
+	 *
 	 * @param file 原始文件
 	 * @param db   内存数据库
 	 * @param duration  指定区间
-	 * @param markUserMap  对每个用户的一个编号，User-->Order
+	 * @param markUserMap  对每个用户的一个编号，Order-->User
 	 * @param allTimeArray  所有时间(无序)
 	 * @param allStartTimeArray  所有开始时间(无序)
 	 * 
@@ -77,7 +78,7 @@ public class RawFileRead {
 					User u = new User(user,new Interval(start,end));
 					db.insert(u);
 					
-					//markUserMap.put(u, markUserFigure);
+					//所有用户名
 					allUsers.add(user);
 					markUserMap.put(markUserFigure, u);
 					++markUserFigure;

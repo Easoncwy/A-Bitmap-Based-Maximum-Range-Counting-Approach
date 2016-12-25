@@ -72,6 +72,7 @@ public class NewAlgorithm {
 		for (int i = compressedB.size()-1 ; i >=0 ; i--)
 			compB.push(compressedB.get(i));
 		ArrayList<Unit> resArray = new ArrayList<>();
+
 		while(!compA.isEmpty()){
 			Unit ua = compA.pop();
 			Unit ub = compB.pop();
@@ -122,15 +123,14 @@ public class NewAlgorithm {
 	}
 	
 	/**
-	 * 得到真假用户集合
+	 * 得到真和假的用户集合
 	 * 
 	 * @param compressedArray  压缩与操作后的 结果compressedBitMap
 	 * @param markUserMap   
-	 * @return  fakeUserSet    假用户集合
+	 * @return  fakeUserSet    真假用户集合
 	 */
 	public ArrayList<User> getFakeUserSet(ArrayList<Unit> compressedArray, Map<Integer, User> markUserMap)
-	{	
-		//SortAndOther sao = new SortAndOther();
+	{
 		ArrayList<User> fakeUserSet = new ArrayList<>();
 		
 		int preOrder = 0;
@@ -139,7 +139,6 @@ public class NewAlgorithm {
 			int bit = unit.bit;
 			if (bit == 1) {
 				for (int j = 0; j < unit.count; j++) {
-					//User user = sao.getKey(markUserMap, preOrder + j);
 					User user = markUserMap.get(preOrder + j);
 					fakeUserSet.add(user);
 				}

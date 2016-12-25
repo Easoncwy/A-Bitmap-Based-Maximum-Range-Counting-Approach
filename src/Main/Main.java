@@ -11,7 +11,8 @@ import Entity.Unit;
 import Entity.User;
 import File.RawFileRead;
 import Method.NewAlgorithm;
-import Method.SortAndOther;
+import Method.SortAndFind;
+import File.CompressedFileRead;
 
 public class Main {
 	
@@ -54,8 +55,8 @@ public class Main {
     	
     	
     	
-    	SortAndOther sortAndOther = new SortAndOther();
-    	ArrayList<String> sortedTimeArray = sortAndOther.sortAllTime(allTimeArray);
+    	SortAndFind sortAndFind = new SortAndFind();
+    	ArrayList<String> sortedTimeArray = SortAndFind.sortAllTime(allTimeArray);
     	
     	/**
     	 * 获得原始的bitmap
@@ -70,7 +71,7 @@ public class Main {
     	compfw.compressedFileWrite(bitmapFile, compressedFile);
    */ 	
     	
-    	File.CompressedFileRead compbr = new File.CompressedFileRead();
+    	CompressedFileRead compbr = new CompressedFileRead();
     	Map<String, ArrayList<Unit>> compressedMap = compbr.compressedFileRead(compressedFile);
     	
     	//将所有用户的index置0，供之后筛选假用户用
