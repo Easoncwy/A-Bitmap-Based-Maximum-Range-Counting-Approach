@@ -5,6 +5,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.lang.reflect.Field;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.BitSet;
@@ -17,7 +18,7 @@ import Entity.User;
 import Method.NewAlgorithm;
 public class CodeToBitMapFileWrite {
 	/**
-	 * 
+	 * 编码bitmap并写入文件
 	 * @param file 写入的BitMap的文件路径
 	 * @param db   
 	 * @param markUserMap   
@@ -26,14 +27,17 @@ public class CodeToBitMapFileWrite {
 	 * @throws IOException
 	 * @throws ParseException
 	 */
-	public Map<String, BitSet> codeToBitMap(String file, Database db, 
-			Map<Integer,User> markUserMap, ArrayList<String> allTimeArray) throws IOException, ParseException
+	public Map<String, BitSet> codeToBitMap(
+			String file,
+			Database db,
+			Map<Integer,User> markUserMap,
+			ArrayList<String> allTimeArray) throws IOException, ParseException
 	{
 		
 		File f = new File(file);
 		FileWriter fw = new FileWriter(f);
 		BufferedWriter bw = new BufferedWriter(fw);
-		
+
 		NewAlgorithm al = new NewAlgorithm();
         //codeToBitMap用于存储每个时刻对应的bitmap编码键值对
         Map<String, BitSet> codedMap = new HashMap<>();
@@ -43,7 +47,9 @@ public class CodeToBitMapFileWrite {
     	 */
     	int count = 1;
     	int costTime = 0;
-    	File outfile = new File("/Users/hou/documents/data/50000/Info-bitmap2");
+
+		File outfile = new File("/Users/supreme/Desktop/data/50000/BitMapFile");
+//    	File outfile = new File("/Users/hou/documents/data/50000/Info-bitmap2");
     	FileWriter filewriter = new FileWriter(outfile);
     	BufferedWriter buffwriter = new BufferedWriter(filewriter);
     	for (String time : allTimeArray) {

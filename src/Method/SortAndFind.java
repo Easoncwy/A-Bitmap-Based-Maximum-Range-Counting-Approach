@@ -14,7 +14,7 @@ import Entity.Database;
 import Entity.Interval;
 import Entity.User;
 
-public class SortAndOther {
+public class SortAndFind {
 	/**
 	 * 根据value 得到 key
 	 * @param map     一个hashmap  user-->order

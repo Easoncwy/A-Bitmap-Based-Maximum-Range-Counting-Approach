@@ -215,12 +215,12 @@ public class NewAlgorithm {
 			HashSet<String> allStartTimeArray) throws ParseException, IOException
 	{
 		Time TIME = new Time();
-		SortAndOther sortAndOther = new SortAndOther();
+		SortAndFind saf = new SortAndFind();
 		/*
 		 * sortTimeArray花费时间计算
 		 */
 		Calendar ca = Calendar.getInstance();
-		ArrayList<String> sortedTimeArray = sortAndOther.sortAllTime(allTimeArray);
+		ArrayList<String> sortedTimeArray = saf.sortAllTime(allTimeArray);
 		
 		Calendar cb = Calendar.getInstance();
 		long sort_cost = cb.getTimeInMillis() - ca.getTimeInMillis();

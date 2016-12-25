@@ -34,7 +34,7 @@ public class RawFileRead {
 	 * @throws ParseException
 	 */
 	public void fileRead(String file, Database db, 
-			long duration,Map<Integer, User> markUserMap, 
+			long duration, Map<Integer, User> markUserMap,
 			ArrayList<String> allTimeArray, HashSet<String> allStartTimeArray,
 			ArrayList<String> allUsers) throws IOException, ParseException
 	
