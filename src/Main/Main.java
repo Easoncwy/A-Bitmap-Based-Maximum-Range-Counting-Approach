@@ -13,6 +13,7 @@ import File.RawFileRead;
 import Method.NewAlgorithm;
 import Method.SortAndFind;
 import File.CompressedFileRead;
+import File.CodeToBitMapFileWrite;
 
 public class Main {
 	
@@ -23,17 +24,16 @@ public class Main {
     	ArrayList<String> allUsers = new ArrayList<>();
     	Map<Integer, User> markUserMap = new HashMap<>();
     	ArrayList<String> allTimeArray = new ArrayList<>();
-    	//ArrayList<String> allStartTimeArray = new ArrayList<>();
-    	HashSet<String> allStartTimeArray = new HashSet<String>();
+    	HashSet<String> allStartTimeArray = new HashSet<>();
         int duration = 300 * 1000 ;
     	
        // String testFile = "/Users/hou/Documents/data/50000/test";
     	//String testBitMapFile = "/Users/hou/Documents/data/50000/testBitMapFile";
     	
-    	String file = "/Users/hou/Documents/data/50000/60second50000";
-    	String bitmapFile = "/Users/hou/Documents/data/50000/BitMapFile";
-    	String compressedFile = "/Users/hou/Documents/data/50000/CompressedBitMapFile";
-        String output = "/Users/hou/Documents/data/50000/result-bitmap3";
+    	String file = "/Users/supreme/Desktop/data/50000/60second50000";
+    	String bitmapFile = "/Users/supreme/Desktop/data/50000/BitMapFile";
+    	String compressedFile = "/Users/supreme/Desktop/data/50000/CompressedBitMapFile";
+        String output = "/Users/supreme/Desktop/data/50000/queryResult";
 
 //    	String example = "/Users/hou/Documents/data/example/example";
 //    	String exampleBitMapFile = "/Users/hou/Documents/data/example/exampleBitMapFile";
@@ -48,12 +48,7 @@ public class Main {
     	fr.fileRead(file, db, duration, markUserMap, allTimeArray, allStartTimeArray,allUsers);
     	
     	/**测试插入*/
-    	
-    	
-    	
-    	
-    	
-    	
+
     	
     	SortAndFind sortAndFind = new SortAndFind();
     	ArrayList<String> sortedTimeArray = SortAndFind.sortAllTime(allTimeArray);
@@ -61,16 +56,17 @@ public class Main {
     	/**
     	 * 获得原始的bitmap
     	 */
- /*   	CodeToBitMapFileWrite ctbm = new CodeToBitMapFileWrite();
+    	CodeToBitMapFileWrite ctbm = new CodeToBitMapFileWrite();
     	ctbm.codeToBitMap(bitmapFile, db, markUserMap, sortedTimeArray);
-  */  	
+
     	/**
     	 * 获得压缩后的bitmap
     	 */
   /*  	CompressedFileWrite compfw = new CompressedFileWrite();
     	compfw.compressedFileWrite(bitmapFile, compressedFile);
    */ 	
-    	
+
+		/*
     	CompressedFileRead compbr = new CompressedFileRead();
     	Map<String, ArrayList<Unit>> compressedMap = compbr.compressedFileRead(compressedFile);
     	
@@ -87,8 +83,7 @@ public class Main {
     	
     	//System.out.println("查询算法开始计时");
         Map<Interval, ArrayList<User>> maxHashMap = al.getMaxHashMap(compressedMap, duration, markUserMap, allTimeArray, allStartTimeArray);
-    	
-        
+
     	
     	al.printTheFinalSearchingResult(maxHashMap,output);
     	
@@ -96,7 +91,8 @@ public class Main {
     	Calendar cb = Calendar.getInstance();
     	
     	long finalCost = cb.getTimeInMillis() - ca.getTimeInMillis();
-		System.out.println("查询算法花费时间: " + Integer.toString((int) finalCost) + " ms\n");	
+		System.out.println("查询算法花费时间: " + Integer.toString((int) finalCost) + " ms\n");
+		*/
     	
 	}  
 
