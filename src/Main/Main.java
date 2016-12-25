@@ -49,15 +49,17 @@ public class Main {
     	
     	/**测试插入*/
 
-    	
-    	SortAndFind sortAndFind = new SortAndFind();
-    	ArrayList<String> sortedTimeArray = SortAndFind.sortAllTime(allTimeArray);
+
     	
     	/**
     	 * 获得原始的bitmap
     	 */
+		/*
+		SortAndFind sortAndFind = new SortAndFind();
+		ArrayList<String> sortedTimeArray = SortAndFind.sortAllTime(allTimeArray);
     	CodeToBitMapFileWrite ctbm = new CodeToBitMapFileWrite();
     	ctbm.codeToBitMap(bitmapFile, db, markUserMap, sortedTimeArray);
+    	*/
 
     	/**
     	 * 获得压缩后的bitmap

@@ -29,14 +29,14 @@ public class RawFileRead {
 	 * @param duration  指定区间
 	 * @param markUserMap  对每个用户的一个编号，Order-->User
 	 * @param allTimeArray  所有时间(无序)
-	 * @param allStartTimeArray  所有开始时间(无序)
+	 * @param allStartTimeSet  所有开始时间(无序)
 	 * 
 	 * @throws IOException
 	 * @throws ParseException
 	 */
 	public void fileRead(String file, Database db, 
 			long duration, Map<Integer, User> markUserMap,
-			ArrayList<String> allTimeArray, HashSet<String> allStartTimeArray,
+			ArrayList<String> allTimeArray, HashSet<String> allStartTimeSet,
 			ArrayList<String> allUsers) throws IOException, ParseException
 	
 	{
@@ -97,7 +97,7 @@ public class RawFileRead {
 		for (String time : markStartEndMap.keySet()) {
 			allTimeArray.add(time);
 			if (markStartEndMap.get(time)) {
-				allStartTimeArray.add(time);
+				allStartTimeSet.add(time);
 			}
 		}
 		
