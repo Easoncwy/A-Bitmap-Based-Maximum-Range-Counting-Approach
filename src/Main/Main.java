@@ -1,8 +1,6 @@
 package Main;
 
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.*;
@@ -11,9 +9,6 @@ import Entity.Database;
 import Entity.Interval;
 import Entity.Unit;
 import Entity.User;
-import File.CodeToBitMapFileWrite;
-import File.CompressedBitmapRead;
-import File.CompressedFileWrite;
 import File.RawFileRead;
 import Method.NewAlgorithm;
 import Method.SortAndOther;
@@ -75,7 +70,7 @@ public class Main {
     	compfw.compressedFileWrite(bitmapFile, compressedFile);
    */ 	
     	
-    	CompressedBitmapRead compbr = new CompressedBitmapRead();
+    	File.CompressedFileRead compbr = new File.CompressedFileRead();
     	Map<String, ArrayList<Unit>> compressedMap = compbr.compressedFileRead(compressedFile);
     	
     	//将所有用户的index置0，供之后筛选假用户用

@@ -10,9 +10,10 @@ import java.util.HashMap;
 import java.util.Map;
 import Entity.Unit;
 
-public class CompressedBitmapRead {
+public class CompressedFileRead {
 	/**
-	 * 
+	 * 读取压缩后的BitMapFile,存为 < time,compBitMap >
+	 *
 	 * @param  compfile            压缩后的的bitmap文件位置
 	 * @return compressedMap   每个时间对应一个压缩后的压缩码
 	 * @throws IOException

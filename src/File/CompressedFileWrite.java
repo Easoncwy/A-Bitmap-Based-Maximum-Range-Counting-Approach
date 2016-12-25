@@ -7,35 +7,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class CompressedFileWrite {
-	public String getCompressedString(String bitmap)
-	{
-		char preChar = bitmap.charAt(0);
-		
-		String compressed = "";
-		int count = 0;
-		for (int i = 0; i < bitmap.length(); i++) {
-			char temp = bitmap.charAt(i);
-			if (preChar == temp) {
-				++count;
-			}else{
-				compressed += count;
-				compressed += ',';
-				compressed += preChar;
-				compressed += ':';
-				
-				preChar = temp;
-				count = 1;
-			}
-			if (i == bitmap.length() - 1) {
-				compressed += count;
-				compressed += ',';
-				compressed += temp;
-			}
-		}
-		return compressed;
-	}
+
 	/**
-	 * 
+	 * 读入未压缩过的bitmap文件,
+	 * 压缩bitmap并写入 文件中
 	 * @param bitmapread   未压缩的bitmap文件位置
 	 * @param bitmapwrite  压缩后的bitmap文件位置
 	 * @throws IOException
@@ -64,6 +39,38 @@ public class CompressedFileWrite {
     		bw.write(write);
 		}
     	bw.close();
+	}
+	/**
+	 * 压缩bitmap方法
+	 * @param bitmap
+	 * @return
+	 */
+	public String getCompressedString(String bitmap)
+	{
+		char preChar = bitmap.charAt(0);
+
+		String compressed = "";
+		int count = 0;
+		for (int i = 0; i < bitmap.length(); i++) {
+			char temp = bitmap.charAt(i);
+			if (preChar == temp) {
+				++count;
+			}else{
+				compressed += count;
+				compressed += ',';
+				compressed += preChar;
+				compressed += ':';
+
+				preChar = temp;
+				count = 1;
+			}
+			if (i == bitmap.length() - 1) {
+				compressed += count;
+				compressed += ',';
+				compressed += temp;
+			}
+		}
+		return compressed;
 	}
 	
 

@@ -18,7 +18,7 @@ import Entity.User;
 import Method.NewAlgorithm;
 public class CodeToBitMapFileWrite {
 	/**
-	 * 编码bitmap并写入文件
+	 * 给每个独特的time编码成bitmap, 写入文件
 	 * @param file 写入的BitMap的文件路径
 	 * @param db   
 	 * @param markUserMap   
