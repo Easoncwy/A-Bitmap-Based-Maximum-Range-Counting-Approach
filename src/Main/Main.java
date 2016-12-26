@@ -14,6 +14,7 @@ import Method.NewAlgorithm;
 import Method.SortAndFind;
 import File.CompressedFileRead;
 import File.CodeToBitMapFileWrite;
+import File.CompressedFileWrite;
 
 public class Main {
 	
@@ -60,19 +61,16 @@ public class Main {
 		ArrayList<String> sortedTimeArray = SortAndFind.sortAllTime(allTimeArray);
 
 
-
-    	CodeToBitMapFileWrite ctbm = new CodeToBitMapFileWrite();
-    	ctbm.codeToBitMap(bitmapFile, db, markUserMap, sortedTimeArray);
+//    	CodeToBitMapFileWrite ctbm = new CodeToBitMapFileWrite();
+//    	ctbm.codeToBitMap(bitmapFile, db, markUserMap, sortedTimeArray);
 
 
     	/**
     	 * 获得压缩后的bitmap
     	 */
-  /*  	CompressedFileWrite compfw = new CompressedFileWrite();
-    	compfw.compressedFileWrite(bitmapFile, compressedFile);
-   */ 	
+//        CompressedFileWrite compfw = new CompressedFileWrite();
+//    	compfw.compressedFileWrite(bitmapFile, compressedFile);
 
-		/*
     	CompressedFileRead compbr = new CompressedFileRead();
     	Map<String, ArrayList<Unit>> compressedMap = compbr.compressedFileRead(compressedFile);
     	
@@ -88,7 +86,7 @@ public class Main {
     	Calendar ca = Calendar.getInstance();
     	
     	//System.out.println("查询算法开始计时");
-        Map<Interval, ArrayList<User>> maxHashMap = al.getMaxHashMap(compressedMap, duration, markUserMap, allTimeArray, allStartTimeArray);
+        Map<Interval, ArrayList<User>> maxHashMap = al.getMaxHashMap(compressedMap, duration, markUserMap, allTimeArray, allStartTimeSet);
 
     	
     	al.printTheFinalSearchingResult(maxHashMap,output);
@@ -98,7 +96,7 @@ public class Main {
     	
     	long finalCost = cb.getTimeInMillis() - ca.getTimeInMillis();
 		System.out.println("查询算法花费时间: " + Integer.toString((int) finalCost) + " ms\n");
-		*/
+
     	
 	}  
 
