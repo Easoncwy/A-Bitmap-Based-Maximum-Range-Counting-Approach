@@ -24,8 +24,9 @@ public class Main {
     	ArrayList<String> allUsers = new ArrayList<>();
     	Map<Integer, User> markUserMap = new HashMap<>();
     	ArrayList<String> allTimeArray = new ArrayList<>();
-    	HashSet<String> allStartTimeArray = new HashSet<>();
-        int duration = 300 * 1000 ;
+    	HashSet<String> allStartTimeSet = new HashSet<>();
+		//持续时间为一分钟
+        int duration = 60 * 1000 ;
     	
        // String testFile = "/Users/hou/Documents/data/50000/test";
     	//String testBitMapFile = "/Users/hou/Documents/data/50000/testBitMapFile";
@@ -45,7 +46,7 @@ public class Main {
 //    	ctf.createExampleFile(example);
     	
     	RawFileRead fr = new RawFileRead();
-    	fr.fileRead(file, db, duration, markUserMap, allTimeArray, allStartTimeArray,allUsers);
+    	fr.fileRead(file, db, duration, markUserMap, allTimeArray, allStartTimeSet,allUsers);
     	
     	/**测试插入*/
 
@@ -54,12 +55,15 @@ public class Main {
     	/**
     	 * 获得原始的bitmap
     	 */
-		/*
+
 		SortAndFind sortAndFind = new SortAndFind();
 		ArrayList<String> sortedTimeArray = SortAndFind.sortAllTime(allTimeArray);
+
+
+
     	CodeToBitMapFileWrite ctbm = new CodeToBitMapFileWrite();
     	ctbm.codeToBitMap(bitmapFile, db, markUserMap, sortedTimeArray);
-    	*/
+
 
     	/**
     	 * 获得压缩后的bitmap

@@ -13,7 +13,12 @@ public class User {
 		intervals.add(i);
 		index = 0;
 	}
-	
+	public boolean isEmpty(){
+		if (intervals.size() == 0)
+			return true;
+		return false;
+	}
+
 	public Interval getInterval(int index){
 		
 		return intervals.get(index);
@@ -26,5 +31,9 @@ public class User {
 	public void add(Interval i){
 		intervals.add(i);
 	}
+
+
+
+
 
 }

@@ -201,7 +201,7 @@ public class NewAlgorithm {
 	 * @param duration
 	 * @param markUserMap
 	 * @param allTimeArray
-	 * @param allStartTimeArray
+	 * @param allStartTimeSet
 	 * @return maxUserHashMap   每个最优区间对应一个最多覆盖用户集合。
 	 * @throws ParseException
 	 * @throws IOException
@@ -211,7 +211,7 @@ public class NewAlgorithm {
 			int duration, 
 			Map<Integer, User> markUserMap, 
 			ArrayList<String> allTimeArray, 
-			HashSet<String> allStartTimeArray) throws ParseException, IOException
+			HashSet<String> allStartTimeSet) throws ParseException, IOException
 	{
 		Time TIME = new Time();
 		SortAndFind saf = new SortAndFind();
@@ -239,7 +239,7 @@ public class NewAlgorithm {
 		long andOperationTime = 0;
 		
 		for (int i = 0; i < sortedTimeArray.size(); i++ ) {
-			if(allStartTimeArray.contains(sortedTimeArray.get(i))){
+			if(allStartTimeSet.contains(sortedTimeArray.get(i))){
 				String startTime = sortedTimeArray.get(i);
 				String endTime = null;
 				ArrayList<User> preUserSet = new ArrayList<>();

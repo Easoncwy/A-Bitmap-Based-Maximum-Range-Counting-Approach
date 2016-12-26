@@ -34,7 +34,6 @@ public class CodeToBitMapFileWrite {
 			Map<Integer,User> markUserMap,
 			ArrayList<String> allTimeArray) throws IOException, ParseException
 	{
-		
 		File f = new File(file);
 		FileWriter fw = new FileWriter(f);
 		BufferedWriter bw = new BufferedWriter(fw);
@@ -49,8 +48,7 @@ public class CodeToBitMapFileWrite {
     	int count = 1;
     	int costTime = 0;
 
-		File outfile = new File("/Users/supreme/Desktop/data/50000/BitMapFile");
-//    	File outfile = new File("/Users/hou/documents/data/50000/Info-bitmap2");
+		File outfile = new File("/Users/supreme/Desktop/data/50000/Info_CodeToBitMap");
     	FileWriter filewriter = new FileWriter(outfile);
     	BufferedWriter buffwriter = new BufferedWriter(filewriter);
     	for (String time : allTimeArray) {
