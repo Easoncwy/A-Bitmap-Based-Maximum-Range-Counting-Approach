@@ -235,9 +235,6 @@ public class NewAlgorithm {
 		/** 根据bitmap得到的用户的时间 */
 		long getFakeUserTime = 0;
 		
-		/** bitmap做与操作的时间*/
-		long andOperationTime = 0;
-		
 		for (int i = 0; i < sortedTimeArray.size(); i++ ) {
 			if(allStartTimeSet.contains(sortedTimeArray.get(i))){
 				String startTime = sortedTimeArray.get(i);
@@ -307,7 +304,7 @@ public class NewAlgorithm {
 				trueHashMap.put(interval, preUserSet);
 			}
 		}
-		System.out.println("andOperation部分花费时间: " + Integer.toString((int) andOperationTime) + " ms\n");
+//		System.out.println("andOperation部分花费时间: " + Integer.toString((int) andOperationTime) + " ms\n");
 		System.out.println("getFakeUserTime部分花费时间: " + Integer.toString((int) getFakeUserTime) + " ms\n");
 		System.out.println("filterFakeUser部分花费时间: " + Integer.toString((int) filterUserTime) + " ms\n");
 	

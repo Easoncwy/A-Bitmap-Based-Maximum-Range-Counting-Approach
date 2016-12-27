@@ -25,13 +25,32 @@ public class Delete {
         for(Integer order:markUserMap.keySet()){
             user = markUserMap.get(order);
             if(user.userID.equals(userId)){
-
+                index = order;
                 user.intervals.remove(interval);
                 break;
             }
         }
+        //如果删除这一区间后,该 user 就没有时间区间了
 
         if (user.isEmpty()){
+            //移除 user
+            markUserMap.remove(index, user);
+            //大于index的User 对应的order全部减一.
+            for (Integer order:markUserMap.keySet()) {
+                if (order > index){
+                    --order;
+                }
+
+
+            }
+
+
+
+
+            allUsers.remove(userId);
+            //把compressedMap里的每一条 压缩后的bitmap在把user序号的位删除.
+
+
 
 
 
