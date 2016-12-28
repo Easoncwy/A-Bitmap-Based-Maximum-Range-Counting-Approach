@@ -41,7 +41,7 @@ public class RecodeCompBitMap {
             ArrayList<Interval> intervals = user.intervals;
             for (int i = 0; i < intervals.size(); i++) {
                 Interval interval = intervals.get(i);
-                long startTime = TIME.uniformTime(interval.getStart());
+                long startTime = TIME.uniformTime(interval.start);
                 if (t < startTime){
                     if (i == 0){
                         break;
@@ -55,6 +55,14 @@ public class RecodeCompBitMap {
                         }
                     }
                 }
+                else {
+                    if ((i == intervals.size() - 1) && interval.Exist(time)){
+                        bitmap.set(i);
+
+                    }else {
+                        continue;
+                    }
+                }
             }
         }
 
@@ -62,7 +70,9 @@ public class RecodeCompBitMap {
 
         ArrayList<Integer> bitmapList = na.convertBitmapToList(bitmap, markUserMap.size());
 
-
+        for (int i = 0; i < bitmapList.size(); i++) {
+            System.out.print(bitmapList.get(i));
+        }
 
         ArrayList<Unit> compBitMap = new ArrayList<>();
         int count = 0;

@@ -87,14 +87,17 @@ public class Main {
 		String start2 = "2013-07-01 12:51:09";
 		String end2   = "2013-07-01 12:59:48";
 
+		/**
+		 * 测试插入用例3:开始时间未编码.在(start, end)范围里有其他时间点.
+		 */
+		String userId3 = "u000002";
+		String start3 = "2013-07-01 12:55:09";
+		String end3   = "2013-07-01 12:59:48";
 
 
+		Interval insertI = new Interval(start3, end3);
 
-		Interval insertI = new Interval(start2, end2);
-
-		Insert insert = new Insert(userId2,insertI,markUserMap,allTimeArray,allStartTimeSet,allUsers,compressedMap);
-
-
+		Insert insert = new Insert(userId3, insertI,markUserMap,allTimeArray,allStartTimeSet,allUsers,compressedMap);
 
 
 
@@ -121,6 +124,7 @@ public class Main {
     	
     	long finalCost = cb.getTimeInMillis() - ca.getTimeInMillis();
 		System.out.println("查询算法花费时间: " + Integer.toString((int) finalCost) + " ms\n");
+
 
 
 
