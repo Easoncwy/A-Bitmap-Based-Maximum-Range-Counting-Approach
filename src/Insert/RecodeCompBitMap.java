@@ -69,11 +69,6 @@ public class RecodeCompBitMap {
         NewAlgorithm na = new NewAlgorithm();
 
         ArrayList<Integer> bitmapList = na.convertBitmapToList(bitmap, markUserMap.size());
-
-        for (int i = 0; i < bitmapList.size(); i++) {
-            System.out.print(bitmapList.get(i));
-        }
-
         ArrayList<Unit> compBitMap = new ArrayList<>();
         int count = 0;
         int preBit = bitmapList.get(0);

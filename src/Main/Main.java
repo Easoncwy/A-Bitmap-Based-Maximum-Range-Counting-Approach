@@ -94,13 +94,17 @@ public class Main {
 		String start3 = "2013-07-01 12:55:09";
 		String end3   = "2013-07-01 12:59:48";
 
+		/**
+		 * 测试插入用例4:开始时间和结束时间都未编码.
+		 */
+		String userId4 = "u000002";
+		String start4 = "2013-07-01 12:55:09";
+		String end4   = "2013-07-01 12:56:09";
 
-		Interval insertI = new Interval(start3, end3);
 
-		Insert insert = new Insert(userId3, insertI,markUserMap,allTimeArray,allStartTimeSet,allUsers,compressedMap);
+		Interval insertI = new Interval(start4, end4);
 
-
-
+		Insert insert = new Insert(userId4, insertI,markUserMap,allTimeArray,allStartTimeSet,allUsers,compressedMap);
 
 		//将所有用户的index置0，供之后筛选假用户用
     	for(Integer order:markUserMap.keySet()){

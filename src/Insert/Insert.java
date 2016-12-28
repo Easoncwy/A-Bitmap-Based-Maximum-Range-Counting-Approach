@@ -175,8 +175,11 @@ public class Insert {
             }else {
                 //对end  时间点重新编码bitmap,再压缩
                 allTimeArray.add(end);
-            }
+                RecodeCompBitMap rcb= new RecodeCompBitMap();
+                ArrayList<Unit> newCompBitMap = rcb.recodeCompBitMap(end, markUserMap);
+                compressedMap.put(end, newCompBitMap);
 
+            }
 
 
             /**
