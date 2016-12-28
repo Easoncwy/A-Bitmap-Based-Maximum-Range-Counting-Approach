@@ -1,6 +1,5 @@
 package Main;
 
-import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.*;
@@ -10,12 +9,10 @@ import Entity.Interval;
 import Entity.Unit;
 import Entity.User;
 import File.RawFileRead;
-import Method.Insert;
+import Insert.Insert;
 import Method.NewAlgorithm;
 import Method.SortAndFind;
 import File.CompressedFileRead;
-import File.CodeToBitMapFileWrite;
-import File.CompressedFileWrite;
 
 public class Main {
 	
@@ -76,14 +73,26 @@ public class Main {
     	Map<String, ArrayList<Unit>> compressedMap = compbr.compressedFileRead(exampleCompFile);
 
 
-		/**测试插入*/
-		String userId = "u000002";
-		String start = "2013-07-01 12:52:09";
-		String end   = "2013-07-01 12:58:48";
+		/**
+		 * 测试插入用例1:开始时间点和结束时间点 都已经编码.在(start, end)范围里没有其他时间点.
+		 */
+		String userId1 = "u000002";
+		String start1 = "2013-07-01 12:52:09";
+		String end1   = "2013-07-01 12:58:48";
 
-		Interval insertI = new Interval(start, end);
+		/**
+		 * 测试插入用例2:开始时间点和结束时间点 都已经编码.在(start, end)范围里有其他时间点.
+		 */
+		String userId2 = "u000002";
+		String start2 = "2013-07-01 12:51:09";
+		String end2   = "2013-07-01 12:59:48";
 
-		Insert insert = new Insert(userId,insertI,markUserMap,allTimeArray,allStartTimeSet,allUsers,compressedMap);
+
+
+
+		Interval insertI = new Interval(start2, end2);
+
+		Insert insert = new Insert(userId2,insertI,markUserMap,allTimeArray,allStartTimeSet,allUsers,compressedMap);
 
 
 
