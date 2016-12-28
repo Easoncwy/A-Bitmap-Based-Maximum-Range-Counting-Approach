@@ -7,6 +7,7 @@ import java.util.Map;
 import Entity.Interval;
 import Entity.Unit;
 import Entity.User;
+import Test.PrintCompBitMap;
 
 public class Insert {
 	/**
@@ -37,6 +38,9 @@ public class Insert {
 				exist = true;
 				break;
 			}
+            /**
+             * ???
+             */
             else {
                 if (index > maxOrder)
                     maxOrder = index;
@@ -54,6 +58,7 @@ public class Insert {
 			end = interval.end;
 
             Time TIME = new Time();
+            long startTime = TIME.uniformTime(start);
             long endTime =  TIME.uniformTime(end);
 
             //把新区间插入到 user.intervals的指定位置
@@ -112,25 +117,9 @@ public class Insert {
              * 测试
              * 打印未插入前 , 初始的comBitMap
              */
-            for (String time:allTimeArray) {
-                ArrayList<Unit> compBitMap = compressedMap.get(time);
+            PrintCompBitMap printBeforeComp = new PrintCompBitMap(allTimeArray, compressedMap);
 
-                System.out.print(time + "-->");
-
-                String compbitmap = "";
-                for (int i = 0; i < compBitMap.size(); i++) {
-                    Unit unit = compBitMap.get(i);
-                    int count = unit.count;
-                    int bit = unit.bit;
-                    compbitmap += count + "," + bit + ":";
-                }
-                System.out.println(compbitmap);
-            }
-
-
-
-
-
+            ++index;
             //如果开始时间点之前已经编码
             //那么需要在它对应的bitmap中把 该用户的index位标为1.
             //这时需要改变它对应的compBitMap
@@ -151,11 +140,72 @@ public class Insert {
                 ArrayList<Unit> newCBitMap = setOne(index, cbitmap);
                 compressedMap.put(end, newCBitMap);
             }else {
-                //对end 时间点重新编码bitmap,再压缩
+                //对end  时间点重新编码bitmap,再压缩
                 allTimeArray.add(end);
             }
 
+            /**
+             * 测试
+             * 打印插入后 , 改变后的的comBitMap
+             */
+            System.out.println("打印插入后 , 改变后的的comBitMap");
+
+            PrintCompBitMap printAfterComp = new PrintCompBitMap(allTimeArray, compressedMap);
+
+
+
+
+            // 判断allTimeArray中是否存在属于(start, end)范围中的时间点
+            for (int i = 0; i < allTimeArray.size(); i++) {
+                String t = allTimeArray.get(i);
+                long time = TIME.uniformTime(t);
+                if ((time > startTime) && (time < endTime)){
+                    //将属于(start, end)范围中的时间点做setOne操作.
+
+
+
+
+
+                }
+            }
+
+
+
+
+
+
+
+
+
+
+
             //对allTimeArray中,属于(start, end)范围中的时间点,做setOne操作.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -184,6 +234,8 @@ public class Insert {
             //如果开始时间点之前已经编码
             //那么需要在它对应的bitmap中把 该用户的index位标为1.
             //这时需要改变它对应的compBitMap
+
+
             if(haveStart){
                 ArrayList<Unit> cbitmap = compressedMap.get(start);
                 ArrayList<Unit> newCBitMap = setOne(index, cbitmap);
@@ -216,16 +268,6 @@ public class Insert {
 
 
 
-
-
-
-
-
-
-
-
-
-
         }
 
 
@@ -239,7 +281,7 @@ public class Insert {
 	 * @param cbitmap
      * @return
      */
-	public ArrayList<Unit> setOne(int index,ArrayList<Unit> cbitmap){
+	public ArrayList<Unit> setOne(int index, ArrayList<Unit> cbitmap){
 		int i,count=0,j;
 		ArrayList<Unit> newCBitMap = new ArrayList<>();
 		for( i = 0; i < cbitmap.size(); i++){
@@ -252,12 +294,16 @@ public class Insert {
 				if(index == 1){
 					Unit lastUnit = newCBitMap.get(newCBitMap.size()-1);
 					lastUnit.count++;
-					Unit u2 = new Unit(count-1,0);
-					newCBitMap.add(u2);
-					break;
+                    if (count -1 > 0){
+                        Unit u2 = new Unit(count-1,0);
+                        newCBitMap.add(u2);
+                        break;
+                    }
+
 				}else if(index == count){
 					Unit u1 = new Unit(count-1,0);
 					newCBitMap.add(u1);
+
 					if( i == (cbitmap.size()-1)){
 						newCBitMap.add(new Unit(1,1));
 					}else{
@@ -276,6 +322,9 @@ public class Insert {
 				}
 			}
 		}
+
+
+
 		for(j = i+1; j < cbitmap.size(); j++){
 			newCBitMap.add(cbitmap.get(j));
 		}

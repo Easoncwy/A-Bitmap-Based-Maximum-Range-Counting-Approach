@@ -89,7 +89,7 @@ public class Main {
 
 
 
-        /*
+
 		//将所有用户的index置0，供之后筛选假用户用
     	for(Integer order:markUserMap.keySet()){
     		User u = markUserMap.get(order);
@@ -112,7 +112,7 @@ public class Main {
     	
     	long finalCost = cb.getTimeInMillis() - ca.getTimeInMillis();
 		System.out.println("查询算法花费时间: " + Integer.toString((int) finalCost) + " ms\n");
-		*/
+
 
 
     	
