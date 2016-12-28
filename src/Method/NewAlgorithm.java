@@ -348,7 +348,7 @@ public class NewAlgorithm {
 				else
 					bw.write("," + userId);
 			}
-			bw.write("/n");
+			bw.write("\n");
 		}
 		bw.close();
 	}

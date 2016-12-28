@@ -37,16 +37,18 @@ public class Insert {
 				exist = true;
 				break;
 			}
-            //得到最大的用户序号
-			else{
-				if(order > maxOrder)
-					maxOrder = order;
-			}
+            else {
+                if (index > maxOrder)
+                    maxOrder = index;
+            }
+
 		}
-		
-		boolean haveStart = false, haveEnd = false;
+        System.out.println("***************");
+
+        boolean haveStart = false, haveEnd = false;
 		if(exist){
-			//用户已经存在
+            System.out.println("b");
+            //用户已经存在
 			start = interval.start;
 			end = interval.end;
 
@@ -64,6 +66,28 @@ public class Insert {
                     continue;
                 }
             }
+
+
+            //打印插入新区间后的所有用户数据
+            for (Integer order:markUserMap.keySet()) {
+                User u = markUserMap.get(order);
+                String userID = u.userID;
+
+                System.out.print(userID + ",");
+                for (int i = 0; i < u.intervals.size(); i++) {
+                    Interval userI = u.intervals.get(i);
+                    System.out.print("[" + userI.start + "," + userI.end + "]");
+
+                }
+                System.out.println();
+            }
+
+
+
+
+
+
+
 
 
 			//判断新加的区间的开始和结束时间点是否之前已经编码

@@ -23,6 +23,24 @@ public class TestHashMap {
         }
         System.out.println("*****************");
         map.remove(1);
+
+
+        for (Integer order:map.keySet()) {
+
+            String key = map.get(order);
+            int temp = -1;
+            if (order > 1){
+                temp = order - 1;
+            }
+            map.put(temp,key);
+
+        }
+
+//        SortedMap sortedMap = t
+
+
+
+
         for (Integer order: map.keySet()) {
             String value = map.get(order);
             System.out.println(order + ":" + value);
