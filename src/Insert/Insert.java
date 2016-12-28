@@ -134,7 +134,6 @@ public class Insert {
 
             ++index;//由于用户序号是从0开始计数.为了setOne方法 计数方便,需要把 index 加一
 
-
             // 将allTimeArray中属于(start, end)范围中的时间点, 做setOne操作.
             for (int i = 0; i < allTimeArray.size(); i++) {
                 String time = allTimeArray.get(i);
@@ -161,6 +160,10 @@ public class Insert {
                 //对start 时间点重新编码bitmap,再压缩
                 allStartTimeSet.add(start);
                 allTimeArray.add(start);
+                RecodeCompBitMap rcb= new RecodeCompBitMap();
+                ArrayList<Unit> newCompBitMap = rcb.recodeCompBitMap(start, markUserMap);
+
+                compressedMap.put(start, newCompBitMap);
 
             }
 
@@ -224,6 +227,10 @@ public class Insert {
                 //要对start 时间点重新编码bitmap,再压缩,加入到compressedMap中
                 allStartTimeSet.add(start);
                 allTimeArray.add(start);
+
+
+
+
 
             }
 
