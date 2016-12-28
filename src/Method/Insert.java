@@ -43,11 +43,12 @@ public class Insert {
             }
 
 		}
-        System.out.println("***************");
+        System.out.println();
+        System.out.println("***************index = " + index);
+
 
         boolean haveStart = false, haveEnd = false;
 		if(exist){
-            System.out.println("b");
             //用户已经存在
 			start = interval.start;
 			end = interval.end;
@@ -57,18 +58,24 @@ public class Insert {
 
             //把新区间插入到 user.intervals的指定位置
             ArrayList<Interval> intervalList = markUserMap.get(index).intervals;
-            for (int i = 0; i < intervalList.size(); i++) {
+            int size = intervalList.size();
+            for (int i = 0; i < size; i++) {
                 long temp = TIME.uniformTime(intervalList.get(i).start);
 
-                if (endTime > temp){
+                if (endTime < temp){
                     intervalList.add(i, interval);
                 }else {
+                    if (i == size - 1)
+                        intervalList.add(interval);
                     continue;
                 }
             }
 
+            /**
+             * 测试
+             * 打印插入新区间后的所有用户数据
+             */
 
-            //打印插入新区间后的所有用户数据
             for (Integer order:markUserMap.keySet()) {
                 User u = markUserMap.get(order);
                 String userID = u.userID;
@@ -83,22 +90,45 @@ public class Insert {
             }
 
 
-
-
-
-
-
-
-
 			//判断新加的区间的开始和结束时间点是否之前已经编码
 			for(int i = 0; i < allTimeArray.size(); i++){
-				if(allTimeArray.get(i).equals(start))
-					haveStart = true;
-				if(allTimeArray.get(i).equals(end))
-					haveEnd = true;
+				if(allTimeArray.get(i).equals(start)){
+                    System.out.println("开始点已经编码");
+                    haveStart = true;
+                }
+
+				if(allTimeArray.get(i).equals(end)){
+                    System.out.println("结束点已经编码");
+                    haveEnd = true;
+                }
 				if(haveStart && haveEnd )
-					break;
+                {
+                    System.out.println("开始点和结束点之前都已经编码");
+                    break;
+                }
 			}
+
+            /**
+             * 测试
+             * 打印未插入前 , 初始的comBitMap
+             */
+            for (String time:allTimeArray) {
+                ArrayList<Unit> compBitMap = compressedMap.get(time);
+
+                System.out.print(time + "-->");
+
+                String compbitmap = "";
+                for (int i = 0; i < compBitMap.size(); i++) {
+                    Unit unit = compBitMap.get(i);
+                    int count = unit.count;
+                    int bit = unit.bit;
+                    compbitmap += count + "," + bit + ":";
+                }
+                System.out.println(compbitmap);
+            }
+
+
+
 
 
             //如果开始时间点之前已经编码
