@@ -1,4 +1,4 @@
-package Method;
+package Delete;
 
 import Entity.Interval;
 import Entity.Unit;

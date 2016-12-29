@@ -190,22 +190,34 @@ public class Insert {
             printTestCases.printCompBitMap(allTimeArray,compressedMap);
 
 
+		}
 
-
-
-
-
-
-		}else {
-            //新加区间的用户,是新用户
+        //新加区间的用户,是新用户
+        else {
+            System.out.println("新加用户是新用户");
+            Time TIME = new Time();
 
             start = interval.start;
             end = interval.end;
 
+            long startTime = TIME.uniformTime(start);
+            long endTime =  TIME.uniformTime(end);
+
+
             //用户增加一个
             User newUser = new User(userId, interval);
-            markUserMap.put(maxOrder + 1, newUser);
+            markUserMap.put(markUserMap.size(), newUser);
             allUsers.add(userId);
+
+
+            /**
+             * 测试
+             * 打印插入新区间后的所有用户数据
+             */
+            PrintTestCases printTestCases = new PrintTestCases();
+            printTestCases.printUserIntervals(markUserMap);
+
+
 
             //判断新加的区间的开始和结束时间点是否之前已经编码
             for(int i = 0; i < allTimeArray.size(); i++){
@@ -217,39 +229,83 @@ public class Insert {
                     break;
             }
 
+            /**
+             * 测试
+             * 打印未插入前 , 初始压缩的comBitMap
+             */
+            printTestCases.printCompBitMap(allTimeArray,compressedMap);
+
+            ++index;//由于用户序号是从0开始计数.为了AddOne方法 计数方便,需要把 index 加一
+
+            // 将allTimeArray中属于(start, end)范围中的时间点, 做addOne操作.
+            for (int i = 0; i < allTimeArray.size(); i++) {
+                String time = allTimeArray.get(i);
+                long t = TIME.uniformTime(time);
+                if ((t > startTime) && (t < endTime)){
+
+                    //将属于(start, end)范围中的时间点做addOne操作.
+                    ArrayList<Unit> cbitmap = compressedMap.get(time);
+                    ArrayList<Unit> newCBitMap = addOne(index, cbitmap);
+                    compressedMap.put(time, newCBitMap);
+                }
+            }
+
+
+            // 将allTimeArray中不属于(start, end)范围中的时间点, 做addZero操作.
+            for (int i = 0; i < allTimeArray.size(); i++) {
+                String time = allTimeArray.get(i);
+                long t = TIME.uniformTime(time);
+                if ((t < startTime) || (t > endTime)){
+
+                    //将属于(start, end)范围中的时间点做addZero操作.
+                    ArrayList<Unit> cbitmap = compressedMap.get(time);
+                    ArrayList<Unit> newCBitMap = addZero(index, cbitmap);
+                    compressedMap.put(time, newCBitMap);
+                }
+            }
+
+
+
+
+
 
             //如果开始时间点之前已经编码
             //这时需要改变它对应的compBitMap
 
             if(haveStart){
                 ArrayList<Unit> cbitmap = compressedMap.get(start);
-                ArrayList<Unit> newCBitMap = setOne(index, cbitmap);
+                ArrayList<Unit> newCBitMap = addOne(index, cbitmap);
                 compressedMap.put(start, newCBitMap);
             }else {
                 //start时间点之前未编码
                 //要对start 时间点重新编码bitmap,再压缩,加入到compressedMap中
                 allStartTimeSet.add(start);
                 allTimeArray.add(start);
-
-
-
-
+                RecodeCompBitMap rcb= new RecodeCompBitMap();
+                ArrayList<Unit> newCompBitMap = rcb.recodeCompBitMap(start, markUserMap);
+                compressedMap.put(start, newCompBitMap);
 
             }
 
 
             if (haveEnd){
                 ArrayList<Unit> cbitmap = compressedMap.get(end);
-                ArrayList<Unit> newCBitMap = setOne(index, cbitmap);
+                ArrayList<Unit> newCBitMap = addOne(index, cbitmap);
                 compressedMap.put(end, newCBitMap);
             }else {
                 //对end 时间点重新编码bitmap,再压缩
                 allTimeArray.add(end);
+                RecodeCompBitMap rcb= new RecodeCompBitMap();
+                ArrayList<Unit> newCompBitMap = rcb.recodeCompBitMap(end, markUserMap);
+                compressedMap.put(end, newCompBitMap);
             }
 
-
-
-
+            /**
+             * 测试
+             * 打印插入后 , 改变后的的comBitMap
+             */
+            System.out.println("打印插入后 , 改变后的的comBitMap");
+            printTestCases.printCompBitMap(allTimeArray,compressedMap);
 
 
 
@@ -264,6 +320,8 @@ public class Insert {
 
 	/**
 	 *
+     * setOne
+     *
 	 * @param index
 	 * @param cbitmap
      * @return
@@ -317,4 +375,78 @@ public class Insert {
 		}
 		return newCBitMap;
 	}
+
+    /**
+     * addOne
+     *
+     * @param index
+     * @param cbitmap
+     * @return
+     */
+    public ArrayList<Unit> addOne(int index, ArrayList<Unit> cbitmap){
+
+        ArrayList<Unit> newCBitMap = new ArrayList<>();
+
+        int size = cbitmap.size();
+        for (int i = 0; i < size - 1; i++) {
+            Unit unit = cbitmap.get(i);
+            newCBitMap.add(unit);
+        }
+        Unit lastUnit = cbitmap.get(size - 1);
+        if (lastUnit.bit == 1){
+            ++lastUnit.count;
+            newCBitMap.add(lastUnit);
+
+        }else {
+            newCBitMap.add(lastUnit);
+            Unit unit = new Unit(1,1);
+            newCBitMap.add(unit);
+        }
+        return newCBitMap;
+    }
+
+    /**
+     * addZero
+     *
+     * @param index
+     * @param cbitmap
+     * @return
+     */
+    public ArrayList<Unit> addZero(int index, ArrayList<Unit> cbitmap){
+        ArrayList<Unit> newCBitMap = new ArrayList<>();
+
+        int size = cbitmap.size();
+        for (int i = 0; i < size - 1; i++) {
+            Unit unit = cbitmap.get(i);
+            newCBitMap.add(unit);
+        }
+
+        Unit lastUnit = cbitmap.get(size - 1);
+        if (lastUnit.bit == 0){
+            ++lastUnit.count;
+            newCBitMap.add(lastUnit);
+
+        }else {
+            newCBitMap.add(lastUnit);
+            Unit unit = new Unit(1,0);
+            newCBitMap.add(unit);
+        }
+
+        return newCBitMap;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

@@ -42,6 +42,8 @@ public class RecodeCompBitMap {
             for (int i = 0; i < intervals.size(); i++) {
                 Interval interval = intervals.get(i);
                 long startTime = TIME.uniformTime(interval.start);
+                long endTime = TIME.uniformTime(interval.end);
+
                 if (t < startTime){
                     if (i == 0){
                         break;
@@ -55,13 +57,20 @@ public class RecodeCompBitMap {
                         }
                     }
                 }
-                else {
+                else if (t <= endTime){
+                    bitmap.set(i);
+                    System.out.println(time + " < " + interval.end);
+                    break;
+                    /*
                     if ((i == intervals.size() - 1) && interval.Exist(time)){
                         bitmap.set(i);
 
                     }else {
                         continue;
                     }
+                    */
+                }else {
+                    continue;
                 }
             }
         }
@@ -69,6 +78,14 @@ public class RecodeCompBitMap {
         NewAlgorithm na = new NewAlgorithm();
 
         ArrayList<Integer> bitmapList = na.convertBitmapToList(bitmap, markUserMap.size());
+        for (int i = 0; i < bitmapList.size(); i++) {
+
+            System.out.println(bitmapList.get(i));
+
+        }
+
+
+
         ArrayList<Unit> compBitMap = new ArrayList<>();
         int count = 0;
         int preBit = bitmapList.get(0);
@@ -90,6 +107,13 @@ public class RecodeCompBitMap {
             }
 
         }
+        for (int i = 0; i < compBitMap.size(); i++) {
+            Unit unit = compBitMap.get(i);
+
+            System.out.print(unit.count + "," + unit.bit + ":");
+        }
+
+
 
         return compBitMap;
     }

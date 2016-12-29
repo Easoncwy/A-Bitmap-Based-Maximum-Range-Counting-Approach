@@ -102,9 +102,33 @@ public class Main {
 		String end4   = "2013-07-01 12:56:09";
 
 
-		Interval insertI = new Interval(start4, end4);
 
-		Insert insert = new Insert(userId4, insertI,markUserMap,allTimeArray,allStartTimeSet,allUsers,compressedMap);
+
+
+
+
+		/**
+		 *
+		 * 测试插入用例5: 新加用户 之前未存在. 开始时间和结束时间都已经编码.在(start, end)范围里有其他时间点.
+		 */
+		String userId5 = "u000003";
+		String start5 = "2013-07-01 12:34:54";
+		String end5   = "2013-07-01 12:44:14";
+
+		/**
+		 *
+		 * 测试插入用例6: 新加用户 之前未存在. 开始时间和结束时间都已经编码.在(start, end)范围里有其他时间点.
+		 */
+		String userId6 = "u000003";
+		String start6 = "2013-07-01 12:55:09";
+		String end6   = "2013-07-01 12:56:09";
+
+
+		Interval insertI = new Interval(start6, end6);
+
+		Insert insert = new Insert(userId6, insertI,markUserMap,allTimeArray,allStartTimeSet,allUsers,compressedMap);
+
+
 
 		//将所有用户的index置0，供之后筛选假用户用
     	for(Integer order:markUserMap.keySet()){
@@ -128,6 +152,8 @@ public class Main {
     	
     	long finalCost = cb.getTimeInMillis() - ca.getTimeInMillis();
 		System.out.println("查询算法花费时间: " + Integer.toString((int) finalCost) + " ms\n");
+
+
 
 
 
