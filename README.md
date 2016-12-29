@@ -15,4 +15,11 @@ File: some file operations
 
 Main: main method
 
-Method: the algorithm and other sorting method
+Method: the algorithm and other sorting methodIner
+
+Insert：insert operations
+
+Delete: delete operations
+
+Test: some test method
+ 
