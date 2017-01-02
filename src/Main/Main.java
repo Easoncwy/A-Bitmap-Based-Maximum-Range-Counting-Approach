@@ -74,37 +74,32 @@ public class Main {
 
 
 		/**
-		 * 测试插入用例1:开始时间点和结束时间点 都已经编码.在(start, end)范围里没有其他时间点.
+		 * 测试插入用例1:新加用户之前未存在, 开始时间点和结束时间点 都已经编码.在(start, end)范围里没有其他时间点.
 		 */
 		String userId1 = "u000002";
 		String start1 = "2013-07-01 12:52:09";
 		String end1   = "2013-07-01 12:58:48";
 
 		/**
-		 * 测试插入用例2:开始时间点和结束时间点 都已经编码.在(start, end)范围里有其他时间点.
+		 * 测试插入用例2:新加用户之前未存在, 开始时间点和结束时间点 都已经编码.在(start, end)范围里有其他时间点.
 		 */
 		String userId2 = "u000002";
 		String start2 = "2013-07-01 12:51:09";
 		String end2   = "2013-07-01 12:59:48";
 
 		/**
-		 * 测试插入用例3:开始时间未编码.在(start, end)范围里有其他时间点.
+		 * 测试插入用例3:新加用户之前未存在, 开始时间未编码.在(start, end)范围里有其他时间点.
 		 */
 		String userId3 = "u000002";
 		String start3 = "2013-07-01 12:55:09";
 		String end3   = "2013-07-01 12:59:48";
 
 		/**
-		 * 测试插入用例4:开始时间和结束时间都未编码.
+		 * 测试插入用例4:新加用户之前未存在, 开始时间和结束时间都未编码.
 		 */
 		String userId4 = "u000002";
 		String start4 = "2013-07-01 12:55:09";
 		String end4   = "2013-07-01 12:56:09";
-
-
-
-
-
 
 
 		/**
@@ -117,16 +112,25 @@ public class Main {
 
 		/**
 		 *
-		 * 测试插入用例6: 新加用户 之前未存在. 开始时间和结束时间都已经编码.在(start, end)范围里有其他时间点.
+		 * 测试插入用例6: 新加用户 之前未存在. 开始时间和结束时间都没有编码.在(start, end)范围里没有其他时间点.
 		 */
 		String userId6 = "u000003";
 		String start6 = "2013-07-01 12:55:09";
 		String end6   = "2013-07-01 12:56:09";
 
+		/**
+		 *
+		 * 测试插入用例7: 新加用户 之前未存在. 开始时间和结束时间都没有编码.在(start, end)范围里有其他时间点.
+		 *
+		 */
+		String userId7 = "u000003";
+		String start7 = "2013-07-01 12:55:09";
+		String end7   = "2013-07-01 13:00:09";
 
-		Interval insertI = new Interval(start6, end6);
 
-		Insert insert = new Insert(userId6, insertI,markUserMap,allTimeArray,allStartTimeSet,allUsers,compressedMap);
+		Interval insertI = new Interval(start7, end7);
+
+		Insert insert = new Insert(userId7, insertI,markUserMap,allTimeArray,allStartTimeSet,allUsers,compressedMap);
 
 
 

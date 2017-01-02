@@ -307,6 +307,12 @@ public class Insert {
             System.out.println("打印插入后 , 改变后的的comBitMap");
             printTestCases.printCompBitMap(allTimeArray,compressedMap);
 
+            System.out.println("打印插入后的User");
+            for (Integer i:markUserMap.keySet()) {
+                System.out.print(markUserMap.get(i).getUserID() + ",");
+
+            }
+
 
 
 
@@ -317,6 +323,20 @@ public class Insert {
 
 
 	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 	/**
 	 *

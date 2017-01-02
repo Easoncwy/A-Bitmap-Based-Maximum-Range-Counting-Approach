@@ -6,7 +6,6 @@ import Entity.Unit;
 import Entity.User;
 import Method.NewAlgorithm;
 import Method.Time;
-
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -57,31 +56,28 @@ public class RecodeCompBitMap {
                         }
                     }
                 }
-                else if (t <= endTime){
-                    bitmap.set(i);
-                    System.out.println(time + " < " + interval.end);
-                    break;
-                    /*
-                    if ((i == intervals.size() - 1) && interval.Exist(time)){
-                        bitmap.set(i);
+                else if ((t >= startTime) && (t <= endTime)){
+                    bitmap.set(order);
 
-                    }else {
+                }
+                else {
+                    if ((i == intervals.size() - 1)) {
+                        break;
+
+                    } else {
                         continue;
                     }
-                    */
-                }else {
-                    continue;
                 }
             }
         }
+        System.out.println();
 
         NewAlgorithm na = new NewAlgorithm();
 
+        System.out.println("打印压缩前的bitmap");
         ArrayList<Integer> bitmapList = na.convertBitmapToList(bitmap, markUserMap.size());
         for (int i = 0; i < bitmapList.size(); i++) {
-
             System.out.println(bitmapList.get(i));
-
         }
 
 
@@ -107,6 +103,9 @@ public class RecodeCompBitMap {
             }
 
         }
+
+
+        System.out.println("打印压缩后的bitmap");
         for (int i = 0; i < compBitMap.size(); i++) {
             Unit unit = compBitMap.get(i);
 
@@ -117,8 +116,6 @@ public class RecodeCompBitMap {
 
         return compBitMap;
     }
-
-
 
 
 }
