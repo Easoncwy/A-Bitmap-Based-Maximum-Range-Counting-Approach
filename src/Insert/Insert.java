@@ -455,18 +455,4 @@ public class Insert {
         return newCBitMap;
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }

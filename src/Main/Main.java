@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.util.*;
 
+import Delete.Delete;
 import Entity.Database;
 import Entity.Interval;
 import Entity.Unit;
@@ -128,11 +129,46 @@ public class Main {
 		String end7   = "2013-07-01 13:00:09";
 
 
-		Interval insertI = new Interval(start7, end7);
+//		Interval insertI = new Interval(start7, end7);
+//		Insert insert = new Insert(userId7, insertI,markUserMap,allTimeArray,allStartTimeSet,allUsers,compressedMap);
 
-		Insert insert = new Insert(userId7, insertI,markUserMap,allTimeArray,allStartTimeSet,allUsers,compressedMap);
+
+        /**
+		 * 测试删除
+		 */
 
 
+        /**
+		 *
+		 * 测试删除用例1.
+		 * 删除区间后, 该用户还有区间.开始时间点和结束时间点不再存在.
+		 *
+		 *
+		 */
+		String userId8 = "u000000";
+		String start8 = "2013-07-01 12:51:09";
+		String end8   = "2013-07-01 12:58:48";
+		Interval deleteI = new Interval(start8, end8);
+		Delete delete = new Delete(userId8, deleteI, markUserMap, allTimeArray, allStartTimeSet, allUsers, compressedMap);
+
+
+
+
+
+
+		/**
+		 *
+		 * 测试删除用例2.
+		 * 删除区间后, 该用户还有区间.开始时间点和结束时间点依旧存在.
+		 *
+		 *
+		 */
+
+
+
+
+
+		/*
 
 		//将所有用户的index置0，供之后筛选假用户用
     	for(Integer order:markUserMap.keySet()){
@@ -156,6 +192,7 @@ public class Main {
     	
     	long finalCost = cb.getTimeInMillis() - ca.getTimeInMillis();
 		System.out.println("查询算法花费时间: " + Integer.toString((int) finalCost) + " ms\n");
+		*/
 
 
 
