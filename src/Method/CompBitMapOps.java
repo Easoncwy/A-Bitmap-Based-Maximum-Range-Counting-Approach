@@ -10,13 +10,59 @@ import java.util.ArrayList;
 public class CompBitMapOps {
 
 
-
+    /**
+     *
+     * @param index
+     * @param cbitmap
+     * @return
+     */
     public ArrayList<Unit> setZero(int index, ArrayList<Unit> cbitmap){
 
+        int i,count=0,j;
+        ArrayList<Unit> newCBitMap = new ArrayList<>();
+        for( i = 0; i < cbitmap.size(); i++){
+            Unit unit = cbitmap.get(i);
+            count =unit.count;
+            if(index > count){
+                newCBitMap.add(unit);
+                index = index - count;
+            }else{
+                if(index == 1){
+                    Unit lastUnit = newCBitMap.get(newCBitMap.size()-1);
+                    lastUnit.count++;
+                    if (count -1 > 0){
+                        Unit u2 = new Unit(count-1,1);
+                        newCBitMap.add(u2);
+                        break;
+                    }
 
+                }else if(index == count){
+                    Unit u1 = new Unit(count-1,1);
+                    newCBitMap.add(u1);
 
+                    if( i == (cbitmap.size()-1)){
+                        newCBitMap.add(new Unit(1,0));
+                    }else{
+                        Unit u3 = cbitmap.get(i + 1);
+                        u3.count++;
+                    }
+                    break;
+                }else{
+                    Unit u1 = new Unit(index-1, 1);
+                    Unit u2 = new Unit(1,0);
+                    Unit u3 = new Unit(count - index, 1);
+                    newCBitMap.add(u1);
+                    newCBitMap.add(u2);
+                    newCBitMap.add(u3);
+                    break;
+                }
+            }
+        }
 
-
+        for(j = i+1; j < cbitmap.size(); j++){
+            newCBitMap.add(cbitmap.get(j));
+        }
+        return newCBitMap;
 
     }
 

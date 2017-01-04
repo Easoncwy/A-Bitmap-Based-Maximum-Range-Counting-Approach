@@ -148,27 +148,46 @@ public class Main {
 		String userId8 = "u000000";
 		String start8 = "2013-07-01 12:51:09";
 		String end8   = "2013-07-01 12:58:48";
-		Interval deleteI = new Interval(start8, end8);
-		Delete delete = new Delete(userId8, deleteI, markUserMap, allTimeArray, allStartTimeSet, allUsers, compressedMap);
 
+		/**
+		 *
+		 * 测试删除用例2.
+		 * 删除区间后, 该用户还有区间.开始时间点和结束时间点不再存在.
+		 *
+		 *
+		 */
 
+		String userId9 = "u000001";
+		String start9 = "2013-07-01 12:35:54";
+		String end9   = "2013-07-01 12:45:14";
 
 
 
 
 		/**
 		 *
-		 * 测试删除用例2.
-		 * 删除区间后, 该用户还有区间.开始时间点和结束时间点依旧存在.
-		 *
+		 * 测试删除用例3.
+		 * 删除区间后, 该用户还有区间.
 		 *
 		 */
+		String userId10 = "u000002";
+		String start10 = "2013-07-01 12:34:54";
+		String end10   = "2013-07-01 12:35:54";
 
 
 
 
 
-		/*
+		Interval deleteI = new Interval(start9, end9);
+		Delete delete = new Delete(userId9, deleteI, markUserMap, allTimeArray, allStartTimeSet, allUsers, compressedMap);
+
+
+
+
+
+
+
+
 
 		//将所有用户的index置0，供之后筛选假用户用
     	for(Integer order:markUserMap.keySet()){
@@ -192,7 +211,7 @@ public class Main {
     	
     	long finalCost = cb.getTimeInMillis() - ca.getTimeInMillis();
 		System.out.println("查询算法花费时间: " + Integer.toString((int) finalCost) + " ms\n");
-		*/
+
 
 
 
