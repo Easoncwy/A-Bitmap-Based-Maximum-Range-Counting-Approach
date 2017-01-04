@@ -146,8 +146,8 @@ public class Main {
 		 *
 		 */
 		String userId8 = "u000000";
-		String start8 = "2013-07-01 12:51:09";
-		String end8   = "2013-07-01 12:58:48";
+		String start8 = "2013-07-01 12:34:54";
+		String end8   = "2013-07-01 12:44:14";
 
 		/**
 		 *
@@ -178,8 +178,8 @@ public class Main {
 
 
 
-		Interval deleteI = new Interval(start9, end9);
-		Delete delete = new Delete(userId9, deleteI, markUserMap, allTimeArray, allStartTimeSet, allUsers, compressedMap);
+		Interval deleteI = new Interval(start8, end8);
+		Delete delete = new Delete(userId8, deleteI, markUserMap, allTimeArray, allStartTimeSet, allUsers, compressedMap);
 
 
 

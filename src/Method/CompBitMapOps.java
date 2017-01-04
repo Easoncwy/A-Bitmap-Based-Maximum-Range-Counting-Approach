@@ -28,13 +28,25 @@ public class CompBitMapOps {
                 index = index - count;
             }else{
                 if(index == 1){
-                    Unit lastUnit = newCBitMap.get(newCBitMap.size()-1);
-                    lastUnit.count++;
-                    if (count -1 > 0){
+                    if (newCBitMap.isEmpty()){
+                        if (count > 1){
+                            Unit firstUnit = new Unit(1, 0);
+                            newCBitMap.add(firstUnit);
+                        }else {
+                            Unit nxtUnit = cbitmap.get(i + 1);
+                            nxtUnit.count++;
+                        }
+
+                    }else {
+                        Unit lastUnit = newCBitMap.get(newCBitMap.size()-1);
+                        lastUnit.count++;
+                    }
+
+                    if (count - 1 > 0){
                         Unit u2 = new Unit(count-1,1);
                         newCBitMap.add(u2);
-                        break;
                     }
+                    break;
 
                 }else if(index == count){
                     Unit u1 = new Unit(count-1,1);
@@ -48,7 +60,7 @@ public class CompBitMapOps {
                     }
                     break;
                 }else{
-                    Unit u1 = new Unit(index-1, 1);
+                    Unit u1 = new Unit(index - 1, 1);
                     Unit u2 = new Unit(1,0);
                     Unit u3 = new Unit(count - index, 1);
                     newCBitMap.add(u1);

@@ -140,7 +140,7 @@ public class Delete {
 
             /**
              * 测试
-             * 打印插入后 , 改变后的的comBitMap
+             * 打印删除后 , 改变后的的comBitMap
              */
             System.out.println("打印删除后 , 改变后的的comBitMap");
             ptc.printCompBitMap(allTimeArray, compressedMap);
