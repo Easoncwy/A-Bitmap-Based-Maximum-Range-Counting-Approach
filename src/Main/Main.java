@@ -114,7 +114,7 @@ public class Main {
         /**
          * 删除测试用例2
          */
-        String userID06 = "u000001";
+        String userID06 = "u000002";
         String start06  = "2013-07-01 08:00:00";
         String end06    = "2013-07-01 10:00:00";
 

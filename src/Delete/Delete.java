@@ -26,6 +26,9 @@ public class Delete {
 
         Time TIME = new Time();
         CmpBitMapOps cbmo = new CmpBitMapOps();
+        SortAndFind saf = new SortAndFind();
+        ArrayList<String> sortedTime = saf.sortAllTime(allTimeArray);
+
 
         String start,end;
         int index = -1;
@@ -64,15 +67,19 @@ public class Delete {
 
 
         if (user.isEmpty()){
+            //如果删除这一区间后,该 user 就没有时间区间了
             allUsers.remove(userId);
             markUserMap.remove(index);
 
+            /**
+             * 测试
+             * 打印删除区间后的
+             */
+            System.out.println("打印删除区间后的用户数据");
+            ptc.printUserIntervals(markUserMap);
 
 
 
-
-
-            //如果删除这一区间后,该 user 就没有时间区间了
             long startTime = TIME.uniformTime(start);
             long endTime =  TIME.uniformTime(end);
 
@@ -102,21 +109,50 @@ public class Delete {
             }
 
 
+            //打印删除前的compressedMap
+            System.out.println("打印删除前的compressedMap");
+            ptc.printCompBitMap(sortedTime, compressedMap);
+
+
 
             ++index;//由于用户序号是从0开始计数.需要把 index 加一
+            // 将allTimeArray中属于(start, end)范围中的时间点, 做setZero操作.
+            for (int i = 0; i < allTimeArray.size(); i++) {
+                String time = allTimeArray.get(i);
+                long t = TIME.uniformTime(time);
+                if ((t > startTime) && (t < endTime)){
+
+                    //将属于(start, end)范围中的时间点做setZero操作.
+                    ArrayList<Unit> cbitmap = compressedMap.get(time);
+                    ArrayList<Unit> newCBitMap = cbmo.setZero(index, cbitmap);
+                    compressedMap.put(time, newCBitMap);
+
+                }
+            }
 
 
+            if (!haveStart){
+                allTimeArray.remove(start);
+                allStartTimeSet.remove(start);
+                compressedMap.remove(start);
+            }else {
+                ArrayList<Unit> cbitmap = compressedMap.get(start);
+                ArrayList<Unit> newCBitMap = cbmo.setZero(index, cbitmap);
+                compressedMap.put(start, newCBitMap);
+            }
 
+            if (!haveEnd){
+                allTimeArray.remove(end);
+                compressedMap.remove(end);
+            }else {
+                ArrayList<Unit> cbitmap = compressedMap.get(end);
+                ArrayList<Unit> newCBitMap = cbmo.setZero(index, cbitmap);
+                compressedMap.put(end, newCBitMap);
+            }
 
-
-
-
-
-
-
-
-
-
+            //打印删除后的compressedMap
+            System.out.println("打印删除后的compressedMap");
+            ptc.printCompBitMap(sortedTime, compressedMap);
 
 
         }else {
@@ -153,8 +189,6 @@ public class Delete {
 
             //打印删除前的compressedMap
             System.out.println("打印删除前的compressedMap");
-            SortAndFind saf = new SortAndFind();
-            ArrayList<String> sortedTime = saf.sortAllTime(allTimeArray);
             ptc.printCompBitMap(sortedTime, compressedMap);
 
 
