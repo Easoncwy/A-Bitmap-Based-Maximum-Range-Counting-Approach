@@ -10,7 +10,7 @@ import java.util.Map;
 /**
  * Created by eason on 2016/12/28.
  */
-public class PrintTestCases {
+public class PrintTest {
 
     public void printUserIntervals(Map<Integer, User> markUserMap){
         for (Integer order:markUserMap.keySet()) {

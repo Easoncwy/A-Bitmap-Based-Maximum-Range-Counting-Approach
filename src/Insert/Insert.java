@@ -8,8 +8,9 @@ import Entity.Interval;
 import Entity.Unit;
 import Entity.User;
 import Method.CmpBitMapOps;
+import Method.SortAndFind;
 import Method.Time;
-import Test.PrintTestCases;
+import Test.PrintTest;
 
 public class Insert {
 	/**
@@ -95,7 +96,7 @@ public class Insert {
              * 测试
              * 打印插入新区间后的所有用户数据
              */
-            PrintTestCases printTestCases = new PrintTestCases();
+            PrintTest printTestCases = new PrintTest();
             printTestCases.printUserIntervals(markUserMap);
 
 
@@ -125,7 +126,10 @@ public class Insert {
              * 测试
              * 打印未插入前 , 初始压缩的comBitMap
              */
-            printTestCases.printCompBitMap(allTimeArray,compressedMap);
+
+            SortAndFind saf = new SortAndFind();
+            ArrayList<String> sortedTime = saf.sortAllTime(allTimeArray);
+            printTestCases.printCompBitMap(sortedTime, compressedMap);
 
 
 
@@ -191,7 +195,7 @@ public class Insert {
              * 打印插入后 , 改变后的的comBitMap
              */
             System.out.println("打印插入后 , 改变后的的comBitMap");
-            printTestCases.printCompBitMap(allTimeArray,compressedMap);
+            printTestCases.printCompBitMap(sortedTime, compressedMap);
 
 
 		}
@@ -218,7 +222,7 @@ public class Insert {
              * 测试
              * 打印插入新区间后的所有用户数据
              */
-            PrintTestCases printTestCases = new PrintTestCases();
+            PrintTest printTestCases = new PrintTest();
             printTestCases.printUserIntervals(markUserMap);
 
 

@@ -5,7 +5,7 @@ import Entity.Unit;
 import Entity.User;
 import Method.CmpBitMapOps;
 import Method.Time;
-import Test.PrintTestCases;
+import Test.PrintTest;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -56,7 +56,7 @@ public class Delete {
          * 打印删除区间后的
          */
         System.out.println("打印删除区间后的用户数据");
-        PrintTestCases ptc = new PrintTestCases();
+        PrintTest ptc = new PrintTest();
         ptc.printUserIntervals(markUserMap);
 
 

@@ -39,7 +39,7 @@ public class SortAndFind {
 	 * @return 所有时间(有序)
 	 * @throws ParseException
 	 */
-	public static ArrayList<String> sortAllTime(ArrayList<String> allTimeArray)throws ParseException{
+	public ArrayList<String> sortAllTime(ArrayList<String> allTimeArray)throws ParseException{
 		Time TIME = new Time();
 		Collections.sort(allTimeArray, new Comparator<Object>() {
 			@Override

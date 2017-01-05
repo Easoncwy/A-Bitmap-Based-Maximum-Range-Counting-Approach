@@ -71,13 +71,7 @@ public class RecodeCompBitMap {
 
         NewAlgorithm na = new NewAlgorithm();
 
-        System.out.println("打印压缩前的bitmap");
         ArrayList<Integer> bitmapList = na.convertBitmapToList(bitmap, markUserMap.size());
-        for (int i = 0; i < bitmapList.size(); i++) {
-            System.out.println(bitmapList.get(i));
-        }
-
-
 
         ArrayList<Unit> compBitMap = new ArrayList<>();
         int count = 0;
@@ -88,7 +82,6 @@ public class RecodeCompBitMap {
             int temp = bitmapList.get(i);
             if (preBit == temp) {
                 ++count;
-                System.out.println("count 加完后 : " + count);
             }else{
                 Unit unit = new Unit(count, preBit);
                 compBitMap.add(unit);
@@ -102,16 +95,6 @@ public class RecodeCompBitMap {
             }
 
         }
-
-
-        System.out.println("打印压缩后的bitmap");
-        for (int i = 0; i < compBitMap.size(); i++) {
-            Unit unit = compBitMap.get(i);
-
-            System.out.print(unit.count + "," + unit.bit + ":");
-        }
-
-
 
         return compBitMap;
     }

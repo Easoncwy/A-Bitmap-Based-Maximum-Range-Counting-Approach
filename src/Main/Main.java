@@ -84,21 +84,26 @@ public class Main {
          *
          */
         String userID02 = "u000000";
-        String start02 = "2013-07-01 11:00:00";
-        String end02   = "2013-07-01 12:00:00";
+        String start02 = "2013-07-01 10:00:00";
+        String end02   = "2013-07-01 11:00:00";
 
         /**
          * 插入测试用例3
          */
         String userID03 = "u000000";
-        String start03 = "2013-07-01 10:00:00";
-        String end03   = "2013-07-01 11:00:00";
+        String start03 = "2013-07-01 16:00:00";
+        String end03   = "2013-07-01 17:00:00";
 
+        /**
+         * 插入测试用例4
+         *
+         */
+        String userID04 = "u000002";
+        String start04 = "2013-07-01 13:00:00";
+        String end04   = "2013-07-01 15:00:00";
 
-        Interval insertI = new Interval(start03, end03);
-        Insert insert = new Insert(userID03, insertI, markUserMap, allTimeArray,allStartTimeSet, allUsers,compressedMap);
-
-
+        Interval insertI = new Interval(start04, end04);
+        Insert insert = new Insert(userID04, insertI, markUserMap, allTimeArray,allStartTimeSet, allUsers,compressedMap);
 
 
 
