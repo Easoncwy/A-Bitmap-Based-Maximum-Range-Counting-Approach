@@ -29,7 +29,6 @@ public class RecodeCompBitMap {
     public ArrayList<Unit> recodeCompBitMap(String time, Map<Integer, User> markUserMap) throws IOException, ParseException
     {
 
-
         Time TIME = new Time();
         BitSet bitmap = new BitSet();
 
@@ -50,20 +49,18 @@ public class RecodeCompBitMap {
                         Interval preI = intervals.get(i - 1);
                         if (preI.Exist(time)){
                             bitmap.set(order);
-                            break;
-                        }else {
-                            break;
                         }
+                        break;
                     }
                 }
                 else if ((t >= startTime) && (t <= endTime)){
                     bitmap.set(order);
+                    break;
 
                 }
                 else {
                     if ((i == intervals.size() - 1)) {
                         break;
-
                     } else {
                         continue;
                     }
@@ -85,11 +82,13 @@ public class RecodeCompBitMap {
         ArrayList<Unit> compBitMap = new ArrayList<>();
         int count = 0;
         int preBit = bitmapList.get(0);
+        int size = bitmapList.size();
 
-        for (int i = 0; i < bitmapList.size(); i++) {
+        for (int i = 0; i < size; i++) {
             int temp = bitmapList.get(i);
             if (preBit == temp) {
                 ++count;
+                System.out.println("count 加完后 : " + count);
             }else{
                 Unit unit = new Unit(count, preBit);
                 compBitMap.add(unit);
@@ -97,7 +96,7 @@ public class RecodeCompBitMap {
 
                 count = 1;
             }
-            if (i == bitmap.length() - 1) {
+            if (i == size - 1) {
                 Unit lastUnit = new Unit(count, temp);
                 compBitMap.add(lastUnit);
             }

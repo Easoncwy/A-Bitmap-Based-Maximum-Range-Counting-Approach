@@ -7,6 +7,7 @@ import java.util.Map;
 import Entity.Interval;
 import Entity.Unit;
 import Entity.User;
+import Method.CmpBitMapOps;
 import Method.Time;
 import Test.PrintTestCases;
 
@@ -32,6 +33,8 @@ public class Insert {
 		int index = -1;
 		int maxOrder = 0;  //之前使用过的用来mark用户的最大顺序
 		boolean exist = false; //标志新加用户是否之前已经存在。
+
+        CmpBitMapOps cbmo = new CmpBitMapOps();
 
         /**
          * step1,标记新加用户之前是否已经存在.
@@ -66,7 +69,6 @@ public class Insert {
             long startTime = TIME.uniformTime(start);
             long endTime =  TIME.uniformTime(end);
 
-
             /**
              *
              * step2.1.1
@@ -75,11 +77,13 @@ public class Insert {
              */
             ArrayList<Interval> intervalList = markUserMap.get(index).intervals;
             int size = intervalList.size();
+
             for (int i = 0; i < size; i++) {
                 long temp = TIME.uniformTime(intervalList.get(i).start);
 
                 if (endTime < temp){
                     intervalList.add(i, interval);
+                    break;
                 }else {
                     if (i == size - 1)
                         intervalList.add(interval);
@@ -142,7 +146,7 @@ public class Insert {
 
                     //将属于(start, end)范围中的时间点做setOne操作.
                     ArrayList<Unit> cbitmap = compressedMap.get(time);
-                    ArrayList<Unit> newCBitMap = setOne(index, cbitmap);
+                    ArrayList<Unit> newCBitMap = cbmo.setOne(index, cbitmap);
                     compressedMap.put(time, newCBitMap);
 
                 }
@@ -154,7 +158,7 @@ public class Insert {
 
 			if(haveStart){
 				ArrayList<Unit> cbitmap = compressedMap.get(start); 
-				ArrayList<Unit> newCBitMap = setOne(index, cbitmap);
+				ArrayList<Unit> newCBitMap = cbmo.setOne(index, cbitmap);
 				compressedMap.put(start, newCBitMap);
 			}else {
                 //对start 时间点重新编码bitmap,再压缩
@@ -170,7 +174,7 @@ public class Insert {
 
             if (haveEnd){
                 ArrayList<Unit> cbitmap = compressedMap.get(end);
-                ArrayList<Unit> newCBitMap = setOne(index, cbitmap);
+                ArrayList<Unit> newCBitMap = cbmo.setOne(index, cbitmap);
                 compressedMap.put(end, newCBitMap);
             }else {
                 //对end  时间点重新编码bitmap,再压缩
@@ -245,7 +249,7 @@ public class Insert {
 
                     //将属于(start, end)范围中的时间点做addOne操作.
                     ArrayList<Unit> cbitmap = compressedMap.get(time);
-                    ArrayList<Unit> newCBitMap = addOne(index, cbitmap);
+                    ArrayList<Unit> newCBitMap = cbmo.addOne(index, cbitmap);
                     compressedMap.put(time, newCBitMap);
                 }
             }
@@ -259,7 +263,7 @@ public class Insert {
 
                     //将属于(start, end)范围中的时间点做addZero操作.
                     ArrayList<Unit> cbitmap = compressedMap.get(time);
-                    ArrayList<Unit> newCBitMap = addZero(index, cbitmap);
+                    ArrayList<Unit> newCBitMap = cbmo.addZero(index, cbitmap);
                     compressedMap.put(time, newCBitMap);
                 }
             }
@@ -274,7 +278,7 @@ public class Insert {
 
             if(haveStart){
                 ArrayList<Unit> cbitmap = compressedMap.get(start);
-                ArrayList<Unit> newCBitMap = addOne(index, cbitmap);
+                ArrayList<Unit> newCBitMap = cbmo.addOne(index, cbitmap);
                 compressedMap.put(start, newCBitMap);
             }else {
                 //start时间点之前未编码
@@ -290,7 +294,7 @@ public class Insert {
 
             if (haveEnd){
                 ArrayList<Unit> cbitmap = compressedMap.get(end);
-                ArrayList<Unit> newCBitMap = addOne(index, cbitmap);
+                ArrayList<Unit> newCBitMap = cbmo.addOne(index, cbitmap);
                 compressedMap.put(end, newCBitMap);
             }else {
                 //对end 时间点重新编码bitmap,再压缩
@@ -312,147 +316,8 @@ public class Insert {
                 System.out.print(markUserMap.get(i).getUserID() + ",");
 
             }
-
-
-
-
-
         }
-
-
-
-
 	}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	/**
-	 *
-     * setOne
-     *
-	 * @param index
-	 * @param cbitmap
-     * @return
-     */
-	public ArrayList<Unit> setOne(int index, ArrayList<Unit> cbitmap){
-		int i,count=0,j;
-		ArrayList<Unit> newCBitMap = new ArrayList<>();
-		for( i = 0; i < cbitmap.size(); i++){
-			Unit unit = cbitmap.get(i);
-			count =unit.count;
-			if(index > count){
-				newCBitMap.add(unit);
-				index = index - count;
-			}else{
-				if(index == 1){
-					Unit lastUnit = newCBitMap.get(newCBitMap.size()-1);
-					lastUnit.count++;
-                    if (count -1 > 0){
-                        Unit u2 = new Unit(count-1,0);
-                        newCBitMap.add(u2);
-                        break;
-                    }
-
-				}else if(index == count){
-					Unit u1 = new Unit(count-1,0);
-					newCBitMap.add(u1);
-
-					if( i == (cbitmap.size()-1)){
-						newCBitMap.add(new Unit(1,1));
-					}else{
-						Unit u3 = cbitmap.get(i+1);
-						u3.count++;
-					}
-					break;
-				}else{
-					Unit u1 = new Unit(index-1,0);
-					Unit u2 = new Unit(1,1);
-					Unit u3 = new Unit(count - index, 0);
-					newCBitMap.add(u1);
-					newCBitMap.add(u2);
-					newCBitMap.add(u3);
-					break;
-				}
-			}
-		}
-
-
-
-		for(j = i+1; j < cbitmap.size(); j++){
-			newCBitMap.add(cbitmap.get(j));
-		}
-		return newCBitMap;
-	}
-
-    /**
-     * addOne
-     *
-     * @param index
-     * @param cbitmap
-     * @return
-     */
-    public ArrayList<Unit> addOne(int index, ArrayList<Unit> cbitmap){
-
-        ArrayList<Unit> newCBitMap = new ArrayList<>();
-
-        int size = cbitmap.size();
-        for (int i = 0; i < size - 1; i++) {
-            Unit unit = cbitmap.get(i);
-            newCBitMap.add(unit);
-        }
-        Unit lastUnit = cbitmap.get(size - 1);
-        if (lastUnit.bit == 1){
-            ++lastUnit.count;
-            newCBitMap.add(lastUnit);
-
-        }else {
-            newCBitMap.add(lastUnit);
-            Unit unit = new Unit(1,1);
-            newCBitMap.add(unit);
-        }
-        return newCBitMap;
-    }
-
-    /**
-     * addZero
-     *
-     * @param index
-     * @param cbitmap
-     * @return
-     */
-    public ArrayList<Unit> addZero(int index, ArrayList<Unit> cbitmap){
-        ArrayList<Unit> newCBitMap = new ArrayList<>();
-
-        int size = cbitmap.size();
-        for (int i = 0; i < size - 1; i++) {
-            Unit unit = cbitmap.get(i);
-            newCBitMap.add(unit);
-        }
-
-        Unit lastUnit = cbitmap.get(size - 1);
-        if (lastUnit.bit == 0){
-            ++lastUnit.count;
-            newCBitMap.add(lastUnit);
-
-        }else {
-            newCBitMap.add(lastUnit);
-            Unit unit = new Unit(1,0);
-            newCBitMap.add(unit);
-        }
-
-        return newCBitMap;
-    }
 
 }

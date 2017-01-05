@@ -3,8 +3,7 @@ package Delete;
 import Entity.Interval;
 import Entity.Unit;
 import Entity.User;
-import Insert.Insert;
-import Method.CompBitMapOps;
+import Method.CmpBitMapOps;
 import Method.Time;
 import Test.PrintTestCases;
 
@@ -25,7 +24,7 @@ public class Delete {
            Map<String, ArrayList<Unit>> compressedMap)throws Exception{
 
         Time TIME = new Time();
-        CompBitMapOps cbmo = new CompBitMapOps();
+        CmpBitMapOps cbmo = new CmpBitMapOps();
 
         String start,end;
         int index = -1;
@@ -64,7 +63,59 @@ public class Delete {
 
 
         if (user.isEmpty()){
+            allUsers.remove(userId);
+            markUserMap.remove(index);
+
+
+
+
+
+
             //如果删除这一区间后,该 user 就没有时间区间了
+            long startTime = TIME.uniformTime(start);
+            long endTime =  TIME.uniformTime(end);
+
+            //删除这一区间后, 判断 deleteI 的 开始时间点 和 结束时间点还存不存在
+            boolean haveStart = false;
+            boolean haveEnd = false;
+
+            Set aftDelTimeSet = new HashSet<>();
+
+            for (Integer order: markUserMap.keySet()) {
+                User u = markUserMap.get(order);
+                ArrayList<Interval> intervals = u.intervals;
+                for (int i = 0; i < intervals.size(); i++){
+                    aftDelTimeSet.add(intervals.get(i).start);
+                    aftDelTimeSet.add(intervals.get(i).end);
+                }
+            }
+
+            if (aftDelTimeSet.contains(start)){
+                System.out.println("开始时间点还存在");
+                haveStart = true;
+            }
+
+            if (aftDelTimeSet.contains(end)){
+                System.out.println("结束时间点还存在");
+                haveEnd = true;
+            }
+
+
+
+            ++index;//由于用户序号是从0开始计数.需要把 index 加一
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
         }else {

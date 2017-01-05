@@ -7,7 +7,7 @@ import java.util.ArrayList;
 /**
  * Created by eason on 2017/1/3.
  */
-public class CompBitMapOps {
+public class CmpBitMapOps {
 
 
     /**
@@ -98,13 +98,25 @@ public class CompBitMapOps {
                 index = index - count;
             }else{
                 if(index == 1){
-                    Unit lastUnit = newCBitMap.get(newCBitMap.size()-1);
-                    lastUnit.count++;
+                    if (newCBitMap.isEmpty()){
+                        if (count > 1){
+                            Unit firstUnit = new Unit(1, 1);
+                            newCBitMap.add(firstUnit);
+                        }else {
+                            Unit nxtUnit = cbitmap.get(i + 1);
+                            nxtUnit.count++;
+                        }
+
+                    }else {
+                        Unit lastUnit = newCBitMap.get(newCBitMap.size()-1);
+                        lastUnit.count++;
+                    }
+
                     if (count -1 > 0){
                         Unit u2 = new Unit(count-1,0);
                         newCBitMap.add(u2);
-                        break;
                     }
+                    break;
 
                 }else if(index == count){
                     Unit u1 = new Unit(count-1,0);

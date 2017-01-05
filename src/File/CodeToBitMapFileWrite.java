@@ -48,7 +48,7 @@ public class CodeToBitMapFileWrite {
     	int count = 1;
     	int costTime = 0;
 
-		File outfile = new File("/Users/supreme/Desktop/data/example/Info_exampleBitMap");
+		File outfile = new File("/Users/supreme/Desktop/data/test/Info_testBitMap");
     	FileWriter filewriter = new FileWriter(outfile);
     	BufferedWriter buffwriter = new BufferedWriter(filewriter);
     	for (String time : allTimeArray) {
