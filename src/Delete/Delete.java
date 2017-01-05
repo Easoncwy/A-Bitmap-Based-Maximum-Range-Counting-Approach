@@ -4,6 +4,7 @@ import Entity.Interval;
 import Entity.Unit;
 import Entity.User;
 import Method.CmpBitMapOps;
+import Method.SortAndFind;
 import Method.Time;
 import Test.PrintTest;
 
@@ -150,6 +151,13 @@ public class Delete {
             }
 
 
+            //打印删除前的compressedMap
+            System.out.println("打印删除前的compressedMap");
+            SortAndFind saf = new SortAndFind();
+            ArrayList<String> sortedTime = saf.sortAllTime(allTimeArray);
+            ptc.printCompBitMap(sortedTime, compressedMap);
+
+
 
             ++index;//由于用户序号是从0开始计数.需要把 index 加一
 
@@ -194,7 +202,7 @@ public class Delete {
              * 打印删除后 , 改变后的的comBitMap
              */
             System.out.println("打印删除后 , 改变后的的comBitMap");
-            ptc.printCompBitMap(allTimeArray, compressedMap);
+            ptc.printCompBitMap(sortedTime, compressedMap);
 
 
 

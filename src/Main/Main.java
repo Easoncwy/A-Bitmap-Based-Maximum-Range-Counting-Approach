@@ -102,8 +102,26 @@ public class Main {
         String start04 = "2013-07-01 13:00:00";
         String end04   = "2013-07-01 15:00:00";
 
-        Interval insertI = new Interval(start04, end04);
-        Insert insert = new Insert(userID04, insertI, markUserMap, allTimeArray,allStartTimeSet, allUsers,compressedMap);
+
+        /**
+         * 删除测试用例1
+         */
+        String userID05 = "u000000";
+        String start05 = "2013-07-01 08:00:00";
+        String end05   = "2013-07-01 09:00:00";
+
+
+        /**
+         * 删除测试用例2
+         */
+        String userID06 = "u000001";
+        String start06  = "2013-07-01 08:00:00";
+        String end06    = "2013-07-01 10:00:00";
+
+
+
+        Interval deleteI = new Interval(start06, end06);
+        Delete delete = new Delete(userID06, deleteI, markUserMap, allTimeArray, allStartTimeSet, allUsers, compressedMap);
 
 
 
