@@ -25,7 +25,7 @@ public class Main {
     	ArrayList<String> allTimeArray = new ArrayList<>();
     	HashSet<String> allStartTimeSet = new HashSet<>();
 		//持续时间为一分钟
-        int duration = 60 * 60 * 1000 ;
+        int duration = 60 * 1000 ;
     	
        // String testFile = "/Users/hou/Documents/data/50000/test";
     	//String testBitMapFile = "/Users/hou/Documents/data/50000/testBitMapFile";
@@ -37,10 +37,10 @@ public class Main {
 
 
 
-        String test =            "/Users/supreme/Desktop/data/test/test";
-    	String testBitMapFile = "/Users/supreme/Desktop/data/test/testBitMapFile";
-    	String testCompFile = "/Users/supreme/Desktop/data/test/testCompFile";
-		String testOutput = "/Users/supreme/Desktop/data/test/testQueryResult";
+        String test =            "/Users/supreme/Desktop/data/Insert50000/60second50000";
+    	String testBitMapFile = "/Users/supreme/Desktop/data/Insert50000/BitMapFile";
+    	String testCompFile = "/Users/supreme/Desktop/data/Insert50000/CompressedBitMapFile";
+		String testOutput = "/Users/supreme/Desktop/data/Insert50000/queryResult";
     	
     	RawFileRead fr = new RawFileRead();
     	fr.fileRead(test, db, duration, markUserMap, allTimeArray, allStartTimeSet,allUsers);
@@ -127,9 +127,59 @@ public class Main {
         String start07  = "2013-07-01 08:00:00";
         String end07    = "2013-07-01 10:00:00";
 
+        /**
+         * 插入测试用例a.新加用户之前未存在
+         *
+         */
+        String userID08 = "u044444";
+        String start08 = "2013-07-26 22:52:33";
+        String end08 = "2013-07-26 22:53:40";
 
-        Interval insertI = new Interval(start05, end05);
-        Insert insert = new Insert(userID05, insertI, markUserMap, allTimeArray, allStartTimeSet, allUsers, compressedMap);
+        /**
+         * 插入测试用例b,新加用户之前已经存在
+         */
+        String userID09 = "u000002";
+        String start09 = "2013-07-26 22:52:33";
+        String end09 = "2013-07-26 22:53:40";
+
+
+        /*
+        Calendar c1 = Calendar.getInstance();
+
+        Interval insertI = new Interval(start09, end09);
+        Insert insert = new Insert(userID09, insertI, markUserMap, allTimeArray, allStartTimeSet, allUsers, compressedMap);
+
+        Calendar c2 = Calendar.getInstance();
+
+        long insertCost = c2.getTimeInMillis() - c1.getTimeInMillis();
+        System.out.println("插入操作花费时间: " + Integer.toString((int) insertCost) + " ms\n");
+        */
+
+        /**
+         * 删除用例测试a
+         */
+
+
+        String userID10 = "u000000";
+        String start10  = "2013-07-26 22:48:42";
+        String end10    = "2013-07-26 23:42:52";
+
+        Calendar c1 = Calendar.getInstance();
+
+        Interval deleteI = new Interval(start10, end10);
+        Delete delete = new Delete(userID10, deleteI, markUserMap, allTimeArray, allStartTimeSet, allUsers, compressedMap);
+
+        Calendar c2 = Calendar.getInstance();
+
+        long insertCost = c2.getTimeInMillis() - c1.getTimeInMillis();
+        System.out.println("删除操作花费时间: " + Integer.toString((int) insertCost) + " ms\n");
+
+
+
+
+
+
+
 
 
 
@@ -158,8 +208,8 @@ public class Main {
     	//System.out.println("查询算法结束计时");
     	Calendar cb = Calendar.getInstance();
     	
-    	long finalCost = cb.getTimeInMillis() - ca.getTimeInMillis();
-		System.out.println("查询算法花费时间: " + Integer.toString((int) finalCost) + " ms\n");
+    	long queryCost = cb.getTimeInMillis() - ca.getTimeInMillis();
+		System.out.println("查询算法花费时间: " + Integer.toString((int) queryCost) + " ms\n");
 
 
     	

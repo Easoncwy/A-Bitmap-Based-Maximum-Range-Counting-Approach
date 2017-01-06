@@ -44,6 +44,7 @@ public class RawFileRead {
 		long min = Integer.MAX_VALUE,max =-1;
 		long startTIME = 0;
 		long endTIME = 0;
+		int allUserCount = 0;
 		
 		File f = new File(file);
 		FileReader fr = new FileReader(f);
@@ -100,19 +101,7 @@ public class RawFileRead {
 				allStartTimeSet.add(time);
 			}
 		}
-		
-		
-		/*
-		for (String time : markStartEndMap.keySet()) {
-			System.out.println(time);
-		}
-		System.out.println();
-		System.out.println("#############################");
-		System.out.println();
-		for (int i = 0; i < allTimeArray.size(); i++) {
-			System.out.println(allTimeArray.get(i));
-		}
-		*/
+
 		System.out.println("共读入"+  count + "记录");
 		System.out.println("有效用户: " + db.data.size());
 	}

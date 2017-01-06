@@ -59,9 +59,9 @@ public class Delete {
          * 测试
          * 打印删除区间后的
          */
-        System.out.println("打印删除区间后的用户数据");
-        PrintTest ptc = new PrintTest();
-        ptc.printUserIntervals(markUserMap);
+//        System.out.println("打印删除区间后的用户数据");
+//        PrintTest ptc = new PrintTest();
+//        ptc.printUserIntervals(markUserMap);
 
 
 
@@ -75,8 +75,8 @@ public class Delete {
              * 测试
              * 打印删除区间后的
              */
-            System.out.println("打印删除区间后的用户数据");
-            ptc.printUserIntervals(markUserMap);
+//            System.out.println("打印删除区间后的用户数据");
+//            ptc.printUserIntervals(markUserMap);
 
 
 
@@ -110,8 +110,8 @@ public class Delete {
 
 
             //打印删除前的compressedMap
-            System.out.println("打印删除前的compressedMap");
-            ptc.printCompBitMap(sortedTime, compressedMap);
+//            System.out.println("打印删除前的compressedMap");
+//            ptc.printCompBitMap(sortedTime, compressedMap);
 
 
 
@@ -151,8 +151,8 @@ public class Delete {
             }
 
             //打印删除后的compressedMap
-            System.out.println("打印删除后的compressedMap");
-            ptc.printCompBitMap(sortedTime, compressedMap);
+//            System.out.println("打印删除后的compressedMap");
+//            ptc.printCompBitMap(sortedTime, compressedMap);
 
 
         }else {
@@ -188,8 +188,8 @@ public class Delete {
 
 
             //打印删除前的compressedMap
-            System.out.println("打印删除前的compressedMap");
-            ptc.printCompBitMap(sortedTime, compressedMap);
+//            System.out.println("打印删除前的compressedMap");
+//            ptc.printCompBitMap(sortedTime, compressedMap);
 
 
 
@@ -235,8 +235,8 @@ public class Delete {
              * 测试
              * 打印删除后 , 改变后的的comBitMap
              */
-            System.out.println("打印删除后 , 改变后的的comBitMap");
-            ptc.printCompBitMap(sortedTime, compressedMap);
+//            System.out.println("打印删除后 , 改变后的的comBitMap");
+//            ptc.printCompBitMap(sortedTime, compressedMap);
 
 
 
