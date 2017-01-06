@@ -36,6 +36,9 @@ public class Insert {
 		boolean exist = false; //标志新加用户是否之前已经存在。
 
         CmpBitMapOps cbmo = new CmpBitMapOps();
+        PrintTest pt = new PrintTest();
+
+        SortAndFind saf = new SortAndFind();
 
         /**
          * step1,标记新加用户之前是否已经存在.
@@ -48,11 +51,11 @@ public class Insert {
 				break;
 			}
             /**
-             * ???
+             * 标记最大序号
              */
             else {
-                if (index > maxOrder)
-                    maxOrder = index;
+                if (order > maxOrder)
+                    maxOrder = order;
             }
 
 		}
@@ -63,6 +66,8 @@ public class Insert {
         boolean haveStart = false, haveEnd = false;
 		if(exist){
             //用户已经存在
+
+            System.out.println("新加用户已经存在");
 			start = interval.start;
 			end = interval.end;
 
@@ -96,8 +101,7 @@ public class Insert {
              * 测试
              * 打印插入新区间后的所有用户数据
              */
-            PrintTest printTestCases = new PrintTest();
-            printTestCases.printUserIntervals(markUserMap);
+            pt.printUserIntervals(markUserMap);
 
 
             /**
@@ -127,9 +131,8 @@ public class Insert {
              * 打印未插入前 , 初始压缩的comBitMap
              */
 
-            SortAndFind saf = new SortAndFind();
             ArrayList<String> sortedTime = saf.sortAllTime(allTimeArray);
-            printTestCases.printCompBitMap(sortedTime, compressedMap);
+            pt.printCompBitMap(sortedTime, compressedMap);
 
 
 
@@ -195,7 +198,7 @@ public class Insert {
              * 打印插入后 , 改变后的的comBitMap
              */
             System.out.println("打印插入后 , 改变后的的comBitMap");
-            printTestCases.printCompBitMap(sortedTime, compressedMap);
+            pt.printCompBitMap(sortedTime, compressedMap);
 
 
 		}
@@ -214,7 +217,7 @@ public class Insert {
 
             //用户增加一个
             User newUser = new User(userId, interval);
-            markUserMap.put(markUserMap.size(), newUser);
+            markUserMap.put(maxOrder + 1, newUser);
             allUsers.add(userId);
 
 
@@ -222,8 +225,7 @@ public class Insert {
              * 测试
              * 打印插入新区间后的所有用户数据
              */
-            PrintTest printTestCases = new PrintTest();
-            printTestCases.printUserIntervals(markUserMap);
+            pt.printUserIntervals(markUserMap);
 
 
 
@@ -241,7 +243,9 @@ public class Insert {
              * 测试
              * 打印未插入前 , 初始压缩的comBitMap
              */
-            printTestCases.printCompBitMap(allTimeArray,compressedMap);
+
+            ArrayList<String> sortedTime = saf.sortAllTime(allTimeArray);
+            pt.printCompBitMap(sortedTime, compressedMap);
 
             ++index;//由于用户序号是从0开始计数.为了AddOne方法 计数方便,需要把 index 加一
 
@@ -271,10 +275,6 @@ public class Insert {
                     compressedMap.put(time, newCBitMap);
                 }
             }
-
-
-
-
 
 
             //如果开始时间点之前已经编码
@@ -313,7 +313,9 @@ public class Insert {
              * 打印插入后 , 改变后的的comBitMap
              */
             System.out.println("打印插入后 , 改变后的的comBitMap");
-            printTestCases.printCompBitMap(allTimeArray,compressedMap);
+
+            ArrayList<String> sortedTime02 = saf.sortAllTime(allTimeArray);
+            pt.printCompBitMap(sortedTime02,compressedMap);
 
             System.out.println("打印插入后的User");
             for (Integer i:markUserMap.keySet()) {
