@@ -37,11 +37,21 @@ public class Main {
 
 
 
+        /*
         String test =            "/Users/supreme/Desktop/data/Insert50000/60second50000";
     	String testBitMapFile = "/Users/supreme/Desktop/data/Insert50000/BitMapFile";
     	String testCompFile = "/Users/supreme/Desktop/data/Insert50000/CompressedBitMapFile";
 		String testOutput = "/Users/supreme/Desktop/data/Insert50000/queryResult";
-    	
+		*/
+
+        String test =            "/Users/supreme/Desktop/data/10000/60seconds10000";
+        String info_bitmapCoding = "/Users/supreme/Desktop/data/10000/info_bitmapCoding";
+        String testBitMapFile = "/Users/supreme/Desktop/data/10000/bitmapFile";
+        String testCompFile = "/Users/supreme/Desktop/data/10000/cmpBitmapFile";
+        String testOutput = "/Users/supreme/Desktop/data/10000/queryResult";
+
+
+
     	RawFileRead fr = new RawFileRead();
     	fr.fileRead(test, db, duration, markUserMap, allTimeArray, allStartTimeSet,allUsers);
 
@@ -50,16 +60,16 @@ public class Main {
     	 * 获得原始的bitmap
     	 */
 
-//		SortAndFind sortAndFind = new SortAndFind();
-//		ArrayList<String> sortedTimeArray = SortAndFind.sortAllTime(allTimeArray);
+		SortAndFind saf = new SortAndFind();
+		ArrayList<String> sortedTimeArray = saf.sortAllTime(allTimeArray);
 
 
 //    	CodeToBitMapFileWrite ctbm = new CodeToBitMapFileWrite();
-//    	ctbm.codeToBitMap(testBitMapFile, db, markUserMap, sortedTimeArray);
+//    	ctbm.codeToBitMap(testBitMapFile, info_bitmapCoding, db, markUserMap, sortedTimeArray);
 
 
     	/**
-    	 * 获得压缩后的bitmap
+    	 * 压缩bitmap
     	 */
 //        CompressedFileWrite cmpfw = new CompressedFileWrite();
 //    	cmpfw.compressedFileWrite(testBitMapFile, testCompFile);
@@ -70,84 +80,29 @@ public class Main {
     	Map<String, ArrayList<Unit>> compressedMap = compbr.compressedFileRead(testCompFile);
 
 
-        /**
-         * 插入测试用例1
-         *
-         */
-
-        String userID01 = "u000000";
-        String start01 = "2013-07-01 06:00:00";
-        String end01   = "2013-07-01 07:00:00";
-
-        /**
-         * 插入测试用例2
-         *
-         */
-        String userID02 = "u000000";
-        String start02 = "2013-07-01 10:00:00";
-        String end02   = "2013-07-01 11:00:00";
-
-        /**
-         * 插入测试用例3
-         */
-        String userID03 = "u000000";
-        String start03 = "2013-07-01 16:00:00";
-        String end03   = "2013-07-01 17:00:00";
-
-        /**
-         * 插入测试用例4
-         *
-         */
-        String userID04 = "u000002";
-        String start04 = "2013-07-01 13:00:00";
-        String end04   = "2013-07-01 15:00:00";
-
-        /**
-         * 插入测试用例5
-         */
-        String userID05 = "u000003";
-        String start05 = "2013-07-01 13:00:00";
-        String end05   = "2013-07-01 15:00:00";
-
-
-
-
-        /**
-         * 删除测试用例1
-         */
-        String userID06 = "u000000";
-        String start06 = "2013-07-01 08:00:00";
-        String end06   = "2013-07-01 09:00:00";
-
-
-        /**
-         * 删除测试用例2
-         */
-        String userID07 = "u000002";
-        String start07  = "2013-07-01 08:00:00";
-        String end07    = "2013-07-01 10:00:00";
 
         /**
          * 插入测试用例a.新加用户之前未存在
          *
          */
-        String userID08 = "u044444";
-        String start08 = "2013-07-26 22:52:33";
-        String end08 = "2013-07-26 22:53:40";
+        String userID08 = "u666666";
+        String start08 = "2013-07-29 21:53:00";
+        String end08 = "2013-07-29 21:56:00";
 
         /**
          * 插入测试用例b,新加用户之前已经存在
          */
         String userID09 = "u000002";
-        String start09 = "2013-07-26 22:52:33";
-        String end09 = "2013-07-26 22:53:40";
+        String start09 = "2013-07-29 21:53:00";
+        String end09 = "2013-07-29 21:56:00";
+
 
 
         /*
         Calendar c1 = Calendar.getInstance();
 
-        Interval insertI = new Interval(start09, end09);
-        Insert insert = new Insert(userID09, insertI, markUserMap, allTimeArray, allStartTimeSet, allUsers, compressedMap);
+        Interval insertI = new Interval(start08, end08);
+        Insert insert = new Insert(userID08, insertI, markUserMap, allTimeArray, allStartTimeSet, allUsers, compressedMap);
 
         Calendar c2 = Calendar.getInstance();
 
@@ -156,18 +111,25 @@ public class Main {
         */
 
         /**
-         * 删除用例测试a
+         * 删除用例测试a,删掉区间后,该用户没有其他区间.
          */
 
+        String userID10 = "u000002";
+        String start10  = "2013-07-13 16:21:47";
+        String end10    = "2013-07-13 16:23:25";
 
-        String userID10 = "u000000";
-        String start10  = "2013-07-26 22:48:42";
-        String end10    = "2013-07-26 23:42:52";
+        /**
+         * 删除用例测试b,删除区间后,该用户还有其他区间
+         */
+        String userID11 = "u000218";
+        String start11  = "2013-07-29 21:54:27";
+        String end11    = "2013-07-29 21:56:15";
+
 
         Calendar c1 = Calendar.getInstance();
 
-        Interval deleteI = new Interval(start10, end10);
-        Delete delete = new Delete(userID10, deleteI, markUserMap, allTimeArray, allStartTimeSet, allUsers, compressedMap);
+        Interval deleteI = new Interval(start11, end11);
+        Delete delete = new Delete(userID11, deleteI, markUserMap, allTimeArray, allStartTimeSet, allUsers, compressedMap);
 
         Calendar c2 = Calendar.getInstance();
 
@@ -179,13 +141,8 @@ public class Main {
 
 
 
-
-
-
-
 //        Interval deleteI = new Interval(start06, end06);
 //        Delete delete = new Delete(userID06, deleteI, markUserMap, allTimeArray, allStartTimeSet, allUsers, compressedMap);
-
 
 
 		//将所有用户的index置0，供之后筛选假用户用
@@ -210,6 +167,8 @@ public class Main {
     	
     	long queryCost = cb.getTimeInMillis() - ca.getTimeInMillis();
 		System.out.println("查询算法花费时间: " + Integer.toString((int) queryCost) + " ms\n");
+
+
 
 
     	

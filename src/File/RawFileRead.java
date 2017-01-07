@@ -44,7 +44,6 @@ public class RawFileRead {
 		long min = Integer.MAX_VALUE,max =-1;
 		long startTIME = 0;
 		long endTIME = 0;
-		int allUserCount = 0;
 		
 		File f = new File(file);
 		FileReader fr = new FileReader(f);
