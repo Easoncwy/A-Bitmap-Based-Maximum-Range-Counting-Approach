@@ -26,9 +26,7 @@ public class Main {
     	HashSet<String> allStartTimeSet = new HashSet<>();
 		//持续时间为一分钟
         int duration = 60 * 1000 ;
-    	
-       // String testFile = "/Users/hou/Documents/data/50000/test";
-    	//String testBitMapFile = "/Users/hou/Documents/data/50000/testBitMapFile";
+
     	
 //    	String file = "/Users/supreme/Desktop/data/50000/60second50000";
 //    	String bitmapFile = "/Users/supreme/Desktop/data/50000/BitMapFile";
@@ -43,13 +41,18 @@ public class Main {
     	String testCompFile = "/Users/supreme/Desktop/data/Insert50000/CompressedBitMapFile";
 		String testOutput = "/Users/supreme/Desktop/data/Insert50000/queryResult";
 		*/
+//        String input = "/Users/supreme/Desktop/data/NewReadInterval";
+//        String output = "/Users/supreme/Desktop/data/40000/60seconds40000";
 
-        String test =            "/Users/supreme/Desktop/data/10000/60seconds10000";
-        String info_bitmapCoding = "/Users/supreme/Desktop/data/10000/info_bitmapCoding";
-        String testBitMapFile = "/Users/supreme/Desktop/data/10000/bitmapFile";
-        String testCompFile = "/Users/supreme/Desktop/data/10000/cmpBitmapFile";
-        String testOutput = "/Users/supreme/Desktop/data/10000/queryResult";
+//        Create10ThousandFile create10ThousandFile = new Create10ThousandFile(input,output,duration);
 
+
+
+        String test =               "/Users/supreme/Desktop/data/40000/60seconds40000";
+        String info_bitmapCoding = "/Users/supreme/Desktop/data/40000/info_bitmapCoding";
+        String testBitMapFile =  "/Users/supreme/Desktop/data/40000/bitmapFile";
+        String testCompFile =  "/Users/supreme/Desktop/data/40000/cmpBitmapFile";
+        String testOutput =  "/Users/supreme/Desktop/data/40000/queryResult";
 
 
     	RawFileRead fr = new RawFileRead();
@@ -74,31 +77,26 @@ public class Main {
 //        CompressedFileWrite cmpfw = new CompressedFileWrite();
 //    	cmpfw.compressedFileWrite(testBitMapFile, testCompFile);
 
-
-
     	CompressedFileRead compbr = new CompressedFileRead();
     	Map<String, ArrayList<Unit>> compressedMap = compbr.compressedFileRead(testCompFile);
-
-
 
         /**
          * 插入测试用例a.新加用户之前未存在
          *
          */
         String userID08 = "u666666";
-        String start08 = "2013-07-29 21:53:00";
-        String end08 = "2013-07-29 21:56:00";
+        String start08 = "2013-07-26 22:52:33";
+        String end08 = "2013-07-26 22:53:44";
 
         /**
          * 插入测试用例b,新加用户之前已经存在
          */
         String userID09 = "u000002";
-        String start09 = "2013-07-29 21:53:00";
-        String end09 = "2013-07-29 21:56:00";
+        String start09 = "2013-07-26 22:52:00";
+        String end09 = "2013-07-26 22:54:00";
 
 
 
-        /*
         Calendar c1 = Calendar.getInstance();
 
         Interval insertI = new Interval(start08, end08);
@@ -108,7 +106,11 @@ public class Main {
 
         long insertCost = c2.getTimeInMillis() - c1.getTimeInMillis();
         System.out.println("插入操作花费时间: " + Integer.toString((int) insertCost) + " ms\n");
-        */
+
+
+
+
+
 
         /**
          * 删除用例测试a,删掉区间后,该用户没有其他区间.
@@ -121,10 +123,12 @@ public class Main {
         /**
          * 删除用例测试b,删除区间后,该用户还有其他区间
          */
-        String userID11 = "u000218";
-        String start11  = "2013-07-29 21:54:27";
-        String end11    = "2013-07-29 21:56:15";
+        String userID11 = "u000000";
+        String start11  = "2013-07-26 22:48:42";
+        String end11    = "2013-07-26 23:42:52";
 
+
+        /*
 
         Calendar c1 = Calendar.getInstance();
 
@@ -135,7 +139,7 @@ public class Main {
 
         long insertCost = c2.getTimeInMillis() - c1.getTimeInMillis();
         System.out.println("删除操作花费时间: " + Integer.toString((int) insertCost) + " ms\n");
-
+        */
 
 
 
@@ -143,6 +147,7 @@ public class Main {
 
 //        Interval deleteI = new Interval(start06, end06);
 //        Delete delete = new Delete(userID06, deleteI, markUserMap, allTimeArray, allStartTimeSet, allUsers, compressedMap);
+
 
 
 		//将所有用户的index置0，供之后筛选假用户用
@@ -167,9 +172,6 @@ public class Main {
     	
     	long queryCost = cb.getTimeInMillis() - ca.getTimeInMillis();
 		System.out.println("查询算法花费时间: " + Integer.toString((int) queryCost) + " ms\n");
-
-
-
 
     	
 	}  

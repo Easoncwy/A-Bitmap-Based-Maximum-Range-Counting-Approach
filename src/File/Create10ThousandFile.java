@@ -42,7 +42,7 @@ public class Create10ThousandFile {
             endTIME = TIME.uniformTime(end);
 
             if( (endTIME - startTIME) >= duration ){
-                if (count < 10000) {
+                if (count < 40000) {
 
                     String write = "";
                     write += user + "-->" + "[" + start + "," + end + "]" + "\n";
