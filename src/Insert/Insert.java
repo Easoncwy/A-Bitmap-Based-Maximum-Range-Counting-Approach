@@ -310,9 +310,9 @@ public class Insert {
              * 测试
              * 打印插入后 , 改变后的的comBitMap
              */
-            System.out.println("打印插入后 , 改变后的的comBitMap");
+//            System.out.println("打印插入后 , 改变后的的comBitMap");
 
-            ArrayList<String> sortedTime02 = saf.sortAllTime(allTimeArray);
+//            ArrayList<String> sortedTime02 = saf.sortAllTime(allTimeArray);
 //            pt.printCompBitMap(sortedTime02,compressedMap);
 
         }

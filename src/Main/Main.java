@@ -42,17 +42,17 @@ public class Main {
 		String testOutput = "/Users/supreme/Desktop/data/Insert50000/queryResult";
 		*/
 //        String input = "/Users/supreme/Desktop/data/NewReadInterval";
-//        String output = "/Users/supreme/Desktop/data/40000/60seconds40000";
+//        String output = "/Users/supreme/Desktop/data/100000/60seconds100000";
 
 //        Create10ThousandFile create10ThousandFile = new Create10ThousandFile(input,output,duration);
 
 
 
-        String test =               "/Users/supreme/Desktop/data/40000/60seconds40000";
-        String info_bitmapCoding = "/Users/supreme/Desktop/data/40000/info_bitmapCoding";
-        String testBitMapFile =  "/Users/supreme/Desktop/data/40000/bitmapFile";
-        String testCompFile =  "/Users/supreme/Desktop/data/40000/cmpBitmapFile";
-        String testOutput =  "/Users/supreme/Desktop/data/40000/queryResult";
+        String test =               "/Users/supreme/Desktop/data/50000/60seconds50000";
+        String info_bitmapCoding = "/Users/supreme/Desktop/data/50000/info_bitmapCoding";
+        String testBitMapFile =  "/Users/supreme/Desktop/data/50000/bitmapFile";
+        String testCompFile =  "/Users/supreme/Desktop/data/50000/cmpBitmapFile";
+        String testOutput =  "/Users/supreme/Desktop/data/50000/queryResult";
 
 
     	RawFileRead fr = new RawFileRead();
@@ -84,16 +84,16 @@ public class Main {
          * 插入测试用例a.新加用户之前未存在
          *
          */
-        String userID08 = "u666666";
-        String start08 = "2013-07-26 22:52:33";
-        String end08 = "2013-07-26 22:53:44";
+        String userID08 = "u888888";
+        String start08 = "2013-07-26 22:52:00";
+        String end08 = "2013-07-26 22:54:00";
 
         /**
          * 插入测试用例b,新加用户之前已经存在
          */
         String userID09 = "u000002";
-        String start09 = "2013-07-26 22:52:00";
-        String end09 = "2013-07-26 22:54:00";
+        String start09 = "2013-07-29 21:52:00";
+        String end09 = "2013-07-29 21:56:00";
 
 
 
@@ -112,9 +112,12 @@ public class Main {
 
 
 
+
+
         /**
          * 删除用例测试a,删掉区间后,该用户没有其他区间.
          */
+
 
         String userID10 = "u000002";
         String start10  = "2013-07-13 16:21:47";
@@ -123,9 +126,9 @@ public class Main {
         /**
          * 删除用例测试b,删除区间后,该用户还有其他区间
          */
-        String userID11 = "u000000";
-        String start11  = "2013-07-26 22:48:42";
-        String end11    = "2013-07-26 23:42:52";
+        String userID11 = "u000218";
+        String start11  = "2013-07-29 21:54:27";
+        String end11    = "2013-07-29 21:56:15";
 
 
         /*
@@ -145,8 +148,13 @@ public class Main {
 
 
 
+
+
+
 //        Interval deleteI = new Interval(start06, end06);
 //        Delete delete = new Delete(userID06, deleteI, markUserMap, allTimeArray, allStartTimeSet, allUsers, compressedMap);
+
+
 
 
 
@@ -172,6 +180,7 @@ public class Main {
     	
     	long queryCost = cb.getTimeInMillis() - ca.getTimeInMillis();
 		System.out.println("查询算法花费时间: " + Integer.toString((int) queryCost) + " ms\n");
+
 
     	
 	}  
