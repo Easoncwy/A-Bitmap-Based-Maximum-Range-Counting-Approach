@@ -11,15 +11,13 @@ Query、Inert、Delete operations are allowed in this algorithm.
 
 Entity: some entities 
 
-File: some file operations 
+File: some file operations
+
+InsertAndDelete：insert operations and delete operation
 
 Main: main method
 
 Method: the algorithm and other sorting methodIner
 
-Insert：insert operations
 
-Delete: delete operations
-
-Test: some test method
  

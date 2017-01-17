@@ -200,7 +200,7 @@ public class NewAlgorithm {
 	 * @param compressedMap
 	 * @param duration
 	 * @param markUserMap
-	 * @param allTimeArray
+	 * @param sortedTimeArray
 	 * @param allStartTimeSet
 	 * @return maxUserHashMap   每个最优区间对应一个最多覆盖用户集合。
 	 * @throws ParseException
@@ -210,7 +210,7 @@ public class NewAlgorithm {
 			Map<String, ArrayList<Unit>> compressedMap,
 			int duration, 
 			Map<Integer, User> markUserMap, 
-			ArrayList<String> allTimeArray, 
+			ArrayList<String> sortedTimeArray,
 			HashSet<String> allStartTimeSet) throws ParseException, IOException
 	{
 		Time TIME = new Time();
@@ -218,12 +218,14 @@ public class NewAlgorithm {
 		/*
 		 * sortTimeArray花费时间计算
 		 */
+		/*
 		Calendar ca = Calendar.getInstance();
-		ArrayList<String> sortedTimeArray = saf.sortAllTime(allTimeArray);
+//		ArrayList<String> sortedTimeArray = saf.sortAllTime(allTimeArray);
 		
 		Calendar cb = Calendar.getInstance();
 		long sort_cost = cb.getTimeInMillis() - ca.getTimeInMillis();
 		System.out.println("sortTimeArray部分花费时间: " + Integer.toString((int) sort_cost) + " ms\n");
+		*/
 		
 		int max = 0;
 		

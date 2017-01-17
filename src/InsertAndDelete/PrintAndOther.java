@@ -1,4 +1,4 @@
-package Test;
+package InsertAndDelete;
 
 import Entity.Interval;
 import Entity.Unit;
@@ -10,7 +10,7 @@ import java.util.Map;
 /**
  * Created by eason on 2016/12/28.
  */
-public class PrintTest {
+public class PrintAndOther {
 
     public void printUserIntervals(Map<Integer, User> markUserMap){
         for (Integer order:markUserMap.keySet()) {

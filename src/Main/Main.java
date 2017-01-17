@@ -4,13 +4,13 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.util.*;
 
-import Delete.Delete;
 import Entity.Database;
 import Entity.Interval;
 import Entity.Unit;
 import Entity.User;
 import File.*;
-import Insert.Insert;
+import InsertAndDelete.Delete;
+import InsertAndDelete.Insert;
 import Method.NewAlgorithm;
 import Method.SortAndFind;
 
@@ -84,23 +84,22 @@ public class Main {
          * 插入测试用例a.新加用户之前未存在
          *
          */
-        String userID08 = "u888888";
-        String start08 = "2013-07-26 22:52:00";
-        String end08 = "2013-07-26 22:54:00";
+        String userID03 = "u888888";
+        String start03 = "2013-07-26 22:52:00";
+        String end03 = "2013-07-26 22:54:00";
 
         /**
          * 插入测试用例b,新加用户之前已经存在
          */
-        String userID09 = "u000002";
-        String start09 = "2013-07-29 21:52:00";
-        String end09 = "2013-07-29 21:56:00";
-
+        String userID04 = "u000006";
+        String start04 = "2013-07-26 22:52:00";
+        String end04 = "2013-07-26 22:54:00";
 
 
         Calendar c1 = Calendar.getInstance();
 
-        Interval insertI = new Interval(start08, end08);
-        Insert insert = new Insert(userID08, insertI, markUserMap, allTimeArray, allStartTimeSet, allUsers, compressedMap);
+        Interval insertI = new Interval(start04, end04);
+        Insert insert = new Insert(userID04, insertI, markUserMap, sortedTimeArray, allStartTimeSet, allUsers, compressedMap);
 
         Calendar c2 = Calendar.getInstance();
 
@@ -109,56 +108,44 @@ public class Main {
 
 
 
-
-
-
-
+        /**
+         * 删除测试
+         */
 
         /**
          * 删除用例测试a,删掉区间后,该用户没有其他区间.
          */
 
-
-        String userID10 = "u000002";
-        String start10  = "2013-07-13 16:21:47";
-        String end10    = "2013-07-13 16:23:25";
+        String userID01 = "u000002";
+        String start01  = "2013-07-13 16:21:47";
+        String end01   = "2013-07-13 16:23:25";
 
         /**
          * 删除用例测试b,删除区间后,该用户还有其他区间
          */
-        String userID11 = "u000218";
-        String start11  = "2013-07-29 21:54:27";
-        String end11    = "2013-07-29 21:56:15";
-
+        String userID02 = "u000000";
+        String start02  = "2013-07-26 22:48:42";
+        String end02    = "2013-07-26 23:42:52";
 
         /*
-
         Calendar c1 = Calendar.getInstance();
 
-        Interval deleteI = new Interval(start11, end11);
-        Delete delete = new Delete(userID11, deleteI, markUserMap, allTimeArray, allStartTimeSet, allUsers, compressedMap);
+        Interval deleteI = new Interval(start02, end02);
+        Delete delete = new Delete(userID02, deleteI, markUserMap, allTimeArray, allStartTimeSet, allUsers, compressedMap);
 
         Calendar c2 = Calendar.getInstance();
 
-        long insertCost = c2.getTimeInMillis() - c1.getTimeInMillis();
-        System.out.println("删除操作花费时间: " + Integer.toString((int) insertCost) + " ms\n");
+        long delCost = c2.getTimeInMillis() - c1.getTimeInMillis();
+        System.out.println("删除操作花费时间: " + Integer.toString((int) delCost) + " ms\n");
         */
 
 
+        /**
+         * 查询测试
+         */
 
 
-
-
-
-
-//        Interval deleteI = new Interval(start06, end06);
-//        Delete delete = new Delete(userID06, deleteI, markUserMap, allTimeArray, allStartTimeSet, allUsers, compressedMap);
-
-
-
-
-
-		//将所有用户的index置0，供之后筛选假用户用
+        //将所有用户的index置0，供之后筛选假用户用
     	for(Integer order:markUserMap.keySet()){
     		User u = markUserMap.get(order);
     		u.index = 0;
@@ -180,6 +167,7 @@ public class Main {
     	
     	long queryCost = cb.getTimeInMillis() - ca.getTimeInMillis();
 		System.out.println("查询算法花费时间: " + Integer.toString((int) queryCost) + " ms\n");
+
 
 
     	

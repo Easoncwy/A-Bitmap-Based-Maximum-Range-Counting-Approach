@@ -1,14 +1,11 @@
-package Insert;
+package InsertAndDelete;
 
-import Entity.Database;
 import Entity.Interval;
 import Entity.Unit;
 import Entity.User;
 import Method.NewAlgorithm;
 import Method.Time;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
+
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.*;
