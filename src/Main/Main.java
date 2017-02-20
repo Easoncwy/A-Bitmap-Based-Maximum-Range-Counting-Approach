@@ -58,7 +58,6 @@ public class Main {
     	RawFileRead fr = new RawFileRead();
     	fr.fileRead(test, db, duration, markUserMap, allTimeArray, allStartTimeSet,allUsers);
 
-    	
     	/**
     	 * 获得原始的bitmap
     	 */
@@ -95,7 +94,7 @@ public class Main {
         String start04 = "2013-07-26 22:52:00";
         String end04 = "2013-07-26 22:54:00";
 
-
+        /*
         Calendar c1 = Calendar.getInstance();
 
         Interval insertI = new Interval(start04, end04);
@@ -105,8 +104,7 @@ public class Main {
 
         long insertCost = c2.getTimeInMillis() - c1.getTimeInMillis();
         System.out.println("插入操作花费时间: " + Integer.toString((int) insertCost) + " ms\n");
-
-
+        */
 
         /**
          * 删除测试

@@ -132,6 +132,7 @@ public class NewAlgorithm {
 	public ArrayList<User> getFakeUserSet(ArrayList<Unit> compressedArray, Map<Integer, User> markUserMap)
 	{
 		ArrayList<User> fakeUserSet = new ArrayList<>();
+		int size = markUserMap.keySet().size();
 		
 		int preOrder = 0;
 		for (int i = 0; i < compressedArray.size(); i++) {
@@ -139,8 +140,10 @@ public class NewAlgorithm {
 			int bit = unit.bit;
 			if (bit == 1) {
 				for (int j = 0; j < unit.count; j++) {
-					User user = markUserMap.get(preOrder + j);
-					fakeUserSet.add(user);
+					if ((preOrder + j) < size){
+						User user = markUserMap.get(preOrder + j);
+						fakeUserSet.add(user);
+					}
 				}
 			}
 			preOrder += unit.count;
@@ -166,7 +169,7 @@ public class NewAlgorithm {
 		String end = interval.end;
 		int index = 0;
 		for (User user : fakeUserSet) 
-		{	
+		{
 			index = user.index;
 			ArrayList<Interval> userIntervalSet = user.intervals;
 			for (int i = index; i < userIntervalSet.size(); i++) {
@@ -259,6 +262,7 @@ public class NewAlgorithm {
 						Calendar c1 = Calendar.getInstance();
 						ArrayList<Unit> compResBitMap = compressedAndOp(startTime, nextTime, compressedMap);
 						ArrayList<User> fakeUserSet = getFakeUserSet(compResBitMap, markUserMap);
+
 						Calendar c2 = Calendar.getInstance();
 						long getFakeUserSet_cost = c2.getTimeInMillis() - c1.getTimeInMillis();
 			    	

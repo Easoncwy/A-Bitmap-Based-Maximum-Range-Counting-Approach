@@ -37,7 +37,7 @@ public class Interval {
 		Long TIME = time.uniformTime(t);
 		Long startTIME = time.uniformTime(start);
 		Long endTIME = time.uniformTime(end);
-		if (startTIME >= TIME)
+		if (startTIME > TIME)
 			return true;
 		return false;
 	}
