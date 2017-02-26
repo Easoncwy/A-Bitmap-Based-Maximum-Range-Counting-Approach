@@ -26,14 +26,11 @@ public class Main {
     	HashSet<String> allStartTimeSet = new HashSet<>();
 		//持续时间为一分钟
         int duration = 60 * 1000 ;
-
     	
 //    	String file = "/Users/supreme/Desktop/data/50000/60second50000";
 //    	String bitmapFile = "/Users/supreme/Desktop/data/50000/BitMapFile";
 //    	String compressedFile = "/Users/supreme/Desktop/data/50000/CompressedBitMapFile";
 //        String output = "/Users/supreme/Desktop/data/50000/queryResult";
-
-
 
         /*
         String test =            "/Users/supreme/Desktop/data/Insert50000/60second50000";
@@ -46,17 +43,14 @@ public class Main {
 
 //        Create10ThousandFile create10ThousandFile = new Create10ThousandFile(input,output,duration);
 
+		String test =                "/Users/supreme/Desktop/data/granularity/1Min/NewReadIntervalMinute";
+		String info_bitmapCoding = "/Users/supreme/Desktop/data/granularity/1Min/info_bitmapCoding";
+		String testBitMapFile =  "/Users/supreme/Desktop/data/granularity/1Min/bitmapFile";
+		String testCompFile =  "/Users/supreme/Desktop/data/granularity/1Min/cmpBitmapFile";
+		String testOutput =  "/Users/supreme/Desktop/data/granularity/1Min/queryResult";
 
 
-        String test =               "/Users/supreme/Desktop/data/50000/60seconds50000";
-        String info_bitmapCoding = "/Users/supreme/Desktop/data/50000/info_bitmapCoding";
-        String testBitMapFile =  "/Users/supreme/Desktop/data/50000/bitmapFile";
-        String testCompFile =  "/Users/supreme/Desktop/data/50000/cmpBitmapFile";
-        String testOutput =  "/Users/supreme/Desktop/data/50000/queryResult";
-
-
-    	RawFileRead fr = new RawFileRead();
-    	fr.fileRead(test, db, duration, markUserMap, allTimeArray, allStartTimeSet,allUsers);
+    	RawFileRead fr = new RawFileRead(test, db, duration, markUserMap, allTimeArray, allStartTimeSet,allUsers);
 
     	/**
     	 * 获得原始的bitmap
@@ -166,9 +160,6 @@ public class Main {
     	long queryCost = cb.getTimeInMillis() - ca.getTimeInMillis();
 		System.out.println("查询算法花费时间: " + Integer.toString((int) queryCost) + " ms\n");
 
-
-
-    	
 	}  
 
 }
