@@ -3,6 +3,7 @@ package InsertAndDelete;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 import Entity.Interval;
 import Entity.Unit;
@@ -25,7 +26,7 @@ public class Insert {
 			Map<Integer, User> markUserMap, 
 			ArrayList<String> allTimeArray, 
 			HashSet<String> allStartTimeSet,
-			ArrayList<String> allUsers,
+			Set<String> allUsers,
 			Map<String, ArrayList<Unit>> compressedMap)throws Exception{
 		
 		String start,end;

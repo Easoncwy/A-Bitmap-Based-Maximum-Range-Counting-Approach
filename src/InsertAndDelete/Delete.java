@@ -27,7 +27,7 @@ public class Delete {
            Map<Integer, User> markUserMap,
            ArrayList<String> allTimeArray,
            HashSet<String> allStartTimeSet,
-           ArrayList<String> allUsers,
+           Set<String> allUsers,
            Map<String, ArrayList<Unit>> compressedMap)throws Exception{
 
         Time TIME = new Time();

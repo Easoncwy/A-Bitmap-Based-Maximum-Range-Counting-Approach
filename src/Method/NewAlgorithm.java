@@ -5,13 +5,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.BitSet;
-import java.util.Calendar;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Stack;
+import java.util.*;
 
 import Entity.Interval;
 import Entity.Unit;
@@ -23,9 +17,9 @@ import Entity.User;
  */
 public class NewAlgorithm {
 	
-	public HashMap<Interval, ArrayList<User>> trueHashMap;
+	public HashMap<Interval, ArrayList<User>> maxMap;
 	public NewAlgorithm(){
-		trueHashMap = new HashMap<>();
+		maxMap = new HashMap<>();
 	}
 	/**
 	 * 把bitmap转换为 0，1数组
@@ -129,19 +123,20 @@ public class NewAlgorithm {
 	 * @param markUserMap   
 	 * @return  fakeUserSet    真假用户集合
 	 */
-	public ArrayList<User> getFakeUserSet(ArrayList<Unit> compressedArray, Map<Integer, User> markUserMap)
+	public ArrayList<User> getFakeUserSet(ArrayList<Unit> compressedArray,
+										  Map<Integer, User> markUserMap,
+										  Set<String> allUsers)
 	{
 		ArrayList<User> fakeUserSet = new ArrayList<>();
-		int size = markUserMap.keySet().size();
-		
+
 		int preOrder = 0;
 		for (int i = 0; i < compressedArray.size(); i++) {
 			Unit unit = compressedArray.get(i);
 			int bit = unit.bit;
 			if (bit == 1) {
 				for (int j = 0; j < unit.count; j++) {
-					if ((preOrder + j) < size){
-						User user = markUserMap.get(preOrder + j);
+					User user = markUserMap.get(preOrder + j);
+					if (allUsers.contains(user.userID)){
 						fakeUserSet.add(user);
 					}
 				}
@@ -214,21 +209,15 @@ public class NewAlgorithm {
 			int duration, 
 			Map<Integer, User> markUserMap, 
 			ArrayList<String> sortedTimeArray,
-			HashSet<String> allStartTimeSet) throws ParseException, IOException
+			HashSet<String> allStartTimeSet,
+			Set<String> allUsers,
+			String output) throws Exception
 	{
-		Time TIME = new Time();
-		SortAndFind saf = new SortAndFind();
-		/*
-		 * sortTimeArray花费时间计算
-		 */
-		/*
+
 		Calendar ca = Calendar.getInstance();
-//		ArrayList<String> sortedTimeArray = saf.sortAllTime(allTimeArray);
-		
-		Calendar cb = Calendar.getInstance();
-		long sort_cost = cb.getTimeInMillis() - ca.getTimeInMillis();
-		System.out.println("sortTimeArray部分花费时间: " + Integer.toString((int) sort_cost) + " ms\n");
-		*/
+
+		Time TIME = new Time();
+
 		
 		int max = 0;
 		
@@ -236,10 +225,16 @@ public class NewAlgorithm {
 		 * 筛选假的用户的时间
 		 */
 		long filterUserTime = 0;
-		
 		/** 根据bitmap得到的用户的时间 */
 		long getFakeUserTime = 0;
-		
+		/**
+		 * 区间调整时间
+		 */
+		long intervalAdjust = 0;
+
+		Map<Interval, ArrayList<User>> trueMap = new HashMap<>();
+		Set<ArrayList<User>> tempSet = new HashSet<>();
+
 		for (int i = 0; i < sortedTimeArray.size(); i++ ) {
 			if(allStartTimeSet.contains(sortedTimeArray.get(i))){
 				String startTime = sortedTimeArray.get(i);
@@ -247,7 +242,9 @@ public class NewAlgorithm {
 				ArrayList<User> preUserSet = new ArrayList<>();
 				int preSize = 0;
 				int get = 0;
+
 				for (int j =  i+ 1; j < sortedTimeArray.size(); j++) {
+
 					String nextTime = sortedTimeArray.get(j);
 					
 					long start = TIME.uniformTime(startTime);
@@ -261,7 +258,7 @@ public class NewAlgorithm {
 						 */
 						Calendar c1 = Calendar.getInstance();
 						ArrayList<Unit> compResBitMap = compressedAndOp(startTime, nextTime, compressedMap);
-						ArrayList<User> fakeUserSet = getFakeUserSet(compResBitMap, markUserMap);
+						ArrayList<User> fakeUserSet = getFakeUserSet(compResBitMap, markUserMap, allUsers);
 
 						Calendar c2 = Calendar.getInstance();
 						long getFakeUserSet_cost = c2.getTimeInMillis() - c1.getTimeInMillis();
@@ -274,6 +271,7 @@ public class NewAlgorithm {
 						if(fakeUserSet.size() < preUserSet.size())
 							break;
 						Calendar cx = Calendar.getInstance();
+
 						trueUserSet = filterFakeUser(new Interval(startTime, nextTime), fakeUserSet);
 						Calendar cy = Calendar.getInstance();
 				    	long filterCost = cy.getTimeInMillis() - cx.getTimeInMillis();
@@ -288,7 +286,7 @@ public class NewAlgorithm {
 					}else{
 						continue;
 					}
-					
+
 					int size = trueUserSet.size();
 					if( get == 1){
 						preSize = size;
@@ -300,31 +298,88 @@ public class NewAlgorithm {
 					}else{
 						break;
 					}
+
+
 				}//计算以startTime开始的最优区间的for循环结束
-				
+
 				if (preSize >= max) {
 					max = preSize;
 				}
-				
-				Interval interval = new Interval(startTime, endTime);
-				trueHashMap.put(interval, preUserSet);
+
+                //区间调整
+				Calendar c_s = Calendar.getInstance();
+				if (tempSet.isEmpty()){
+					tempSet.add(preUserSet);
+					Interval interval = new Interval(startTime, endTime);
+					trueMap.put(interval, preUserSet);
+				}else {
+					if (tempSet.contains(preUserSet)){
+						continue;
+					}else {
+						tempSet.add(preUserSet);
+						Interval interval = new Interval(startTime, endTime);
+						trueMap.put(interval, preUserSet);
+					}
+				}
+				Calendar c_e = Calendar.getInstance();
+				long cost = c_e.getTimeInMillis() - c_s.getTimeInMillis();
+				intervalAdjust += cost;
+				//区间调整结束
+
 			}
+
 		}
-//		System.out.println("andOperation部分花费时间: " + Integer.toString((int) andOperationTime) + " ms\n");
-		System.out.println("getFakeUserTime部分花费时间: " + Integer.toString((int) getFakeUserTime) + " ms\n");
-		System.out.println("filterFakeUser部分花费时间: " + Integer.toString((int) filterUserTime) + " ms\n");
-	
-		System.out.println("最多能覆盖" + max + "个用户");
-			
-		Map<Interval, ArrayList<User>> maxUserHashMap = new HashMap<>();
-		for (Interval it : trueHashMap.keySet()) {
-			ArrayList<User> userSet = trueHashMap.get(it);
+
+//		Map<Interval, ArrayList<User>> maxMap = new HashMap<>();
+		for (Interval it : trueMap.keySet()) {
+			ArrayList<User> userSet = trueMap.get(it);
 			int size = userSet.size();
 			if (size == max) {
-				maxUserHashMap.put(it, userSet);
+				maxMap.put(it, userSet);
 			}
 		}
-		return maxUserHashMap;
+
+		/**
+		 * 区间调整
+		 */
+
+		/*
+		Map<ArrayList<User>, ArrayList<Interval>> tempMap = new HashMap<>();
+		for (Interval it: maxMap.keySet()){
+			ArrayList<User> userSet = maxMap.get(it);
+			if (!tempMap.containsKey(userSet)){
+				ArrayList<Interval> list = new ArrayList<>();
+				list.add(it);
+				tempMap.put(userSet, list);
+			}else {
+				tempMap.get(userSet).add(it);
+			}
+		}
+		*/
+
+		/*
+		for (ArrayList<User> set: tempMap.keySet()) {
+			ArrayList<Interval> list = tempMap.get(set);
+			for (User u: set) {
+				System.out.printf(u.getUserID() + ",");
+			}
+			System.out.printf("-->");
+			for (int i = 0; i < list.size(); i++) {
+				Interval interval = list.get(i);
+
+				System.out.print("[" + interval.getStart() + "," + interval.getEnd() + "]" + ",");
+			}
+			System.out.println();
+
+		}
+		*/
+
+		Calendar cb = Calendar.getInstance();
+		long finalcost = cb.getTimeInMillis() - ca.getTimeInMillis();
+
+		output(maxMap, output, max, getFakeUserTime, filterUserTime, intervalAdjust,finalcost);
+
+		return maxMap;
 	}
 	
 	
@@ -336,10 +391,15 @@ public class NewAlgorithm {
 	 * @throws ParseException
 	 * @throws IOException 
 	 */
-	public void printTheFinalSearchingResult(Map<Interval, ArrayList<User>> maxUserHashMap, String output) throws ParseException, IOException{
+	public void output(Map<Interval, ArrayList<User>> maxUserHashMap, String output, int max, long time1, long time2, long time3,long time4) throws ParseException, IOException{
 		File outfile = new File(output);
     	FileWriter fw = new FileWriter(outfile);
     	BufferedWriter bw = new BufferedWriter(fw);
+		bw.write("getFakeUserTime部分花费时间: " + Integer.toString((int) time1) + " ms\n");
+		bw.write("filterFakeUser部分花费时间: " + Integer.toString((int) time2) + " ms\n");
+		bw.write("intervalAdjust部分花费时间: " + Integer.toString((int) time3) + " ms\n");
+		bw.write("总共花费时间: " + Integer.toString((int) time4) + " ms\n");
+		bw.write("最多能覆盖" + max + "个用户" + "\n");
 		for (Interval it : maxUserHashMap.keySet()) {
 			String start = it.getStart();
 			String end = it.getEnd();

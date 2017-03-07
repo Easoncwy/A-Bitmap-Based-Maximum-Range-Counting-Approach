@@ -31,6 +31,30 @@ public class Interval {
 		}
 		return false;
 	}
+	public boolean contains(String t) throws Exception{
+		Time time = new Time();
+		Long TIME = time.uniformTime(t);
+		Long startTIME = time.uniformTime(start);
+		Long endTIME = time.uniformTime(end);
+		if ((startTIME <= TIME) && (TIME <= endTIME)){
+			return true;
+		}
+		return false;
+
+
+	}
+	public boolean smaller(String t) throws ParseException{
+		Time time = new Time();
+		Long TIME = time.uniformTime(t);
+		Long startTIME = time.uniformTime(start);
+		Long endTIME = time.uniformTime(end);
+		if (endTIME < TIME)
+			return true;
+		return false;
+	}
+
+
+
 	
 	public boolean bigger(String t) throws ParseException{
 		Time time = new Time();
@@ -54,6 +78,20 @@ public class Interval {
 		return false;
 		
 	}
+	public boolean before(String t) throws ParseException{
+		Time time = new Time();
+		long TIME = time.uniformTime(t);
+		long startTIME = time.uniformTime(start);
+		long endTIME = time.uniformTime(end);
+
+		if (endTIME < TIME) {
+			return true;
+		}
+		return false;
+
+	}
+
+
 	
 	public boolean containsInterval(Interval interval) throws ParseException{
 		Time time = new Time();
@@ -83,4 +121,7 @@ public class Interval {
 		}
 		return false;
 	}
+
+
+
 }

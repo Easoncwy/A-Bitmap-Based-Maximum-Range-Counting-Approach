@@ -16,7 +16,7 @@ public class Time {
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-		Long TIME = ((Date)sdf.parse(s)).getTime();
+		long TIME = ((Date)sdf.parse(s)).getTime();
 		
 		return TIME;
 		

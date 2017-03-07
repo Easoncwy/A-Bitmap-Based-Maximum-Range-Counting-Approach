@@ -5,10 +5,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
+import java.util.*;
 
 import Entity.Database;
 import Entity.Interval;
@@ -34,10 +31,14 @@ public class RawFileRead {
 	 * @throws IOException
 	 * @throws ParseException
 	 */
-	public RawFileRead(String file, Database db,
-			long duration, Map<Integer, User> markUserMap,
-			ArrayList<String> allTimeArray, HashSet<String> allStartTimeSet,
-			ArrayList<String> allUsers) throws IOException, ParseException
+	public RawFileRead(
+			String file,
+			Database db,
+			long duration,
+			Map<Integer, User> markUserMap,
+			ArrayList<String> allTimeArray,
+			Set<String> allStartTimeSet,
+			Set<String> allUsers) throws IOException, ParseException
 	
 	{
 		Time TIME = new Time();
