@@ -1,4 +1,4 @@
-package File;
+package com.file;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -8,7 +8,7 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import Entity.Unit;
+import com.entity.Unit;
 
 public class CompressedFileRead {
 	/**

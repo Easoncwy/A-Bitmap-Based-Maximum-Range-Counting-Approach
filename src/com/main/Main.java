@@ -1,18 +1,17 @@
-package Main;
+package com.main;
 
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.*;
 
-import Entity.Database;
-import Entity.Interval;
-import Entity.Unit;
-import Entity.User;
+import com.entity.Database;
+import com.entity.Unit;
+import com.entity.User;
 import File.*;
-import InsertAndDelete.Delete;
-import InsertAndDelete.Insert;
-import Method.NewAlgorithm;
-import Method.SortAndFind;
+import com.method.NewAlgorithm;
+import com.method.SortAndFind;
+import com.file.CompressedFileRead;
+import com.file.RawFileRead;
 
 public class Main {
 	
@@ -27,15 +26,15 @@ public class Main {
 		//持续时间为一分钟
 //        int duration = 60 * 1000 ;
 		//持续时间为60分钟
-		int duration = 60 * 1000;
+		int duration = 60 * 60 * 1000;
 
 //        Create10ThousandFile create10ThousandFile = new Create10ThousandFile(input,output,duration);
 
-		String test =                "/Users/supreme/Desktop/data/50000/60seconds50000";
+		String test =                "/Users/supreme/Desktop/data/granularity/1Hour/NewReadIntervalHour";
 //		String info_bitmapCoding = "/Users/supreme/Desktop/data/granularity/1Hour/info_bitmapCoding";
 //		String testBitMapFile =  "/Users/supreme/Desktop/data/granularity/1Hour/bitmapFile";
-		String testCompFile =  "/Users/supreme/Desktop/data/50000/cmpBitmapFile";
-		String testOutput =  "/Users/supreme/Desktop/data/50000/queryResult";
+		String testCompFile =  "/Users/supreme/Desktop/data/granularity/1Hour/cmpBitmapFile";
+		String testOutput =  "/Users/supreme/Desktop/data/granularity/1Hour/queryResult";
 
 
     	RawFileRead fr = new RawFileRead(test, db, duration, markUserMap, allTimeArray, allStartTimeSet,allUsers);

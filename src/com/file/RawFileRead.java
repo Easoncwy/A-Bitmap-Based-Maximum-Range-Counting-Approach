@@ -1,4 +1,4 @@
-package File;
+package com.file;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -7,10 +7,10 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.util.*;
 
-import Entity.Database;
-import Entity.Interval;
-import Entity.User;
-import Method.Time;
+import com.entity.Database;
+import com.entity.Interval;
+import com.entity.User;
+import com.method.Time;
 /**
  * 
  * @author eason

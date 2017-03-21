@@ -1,10 +1,10 @@
-package InsertAndDelete;
+package com.insertdelete;
 
-import Entity.Interval;
-import Entity.Unit;
-import Entity.User;
-import Method.NewAlgorithm;
-import Method.Time;
+import com.entity.Interval;
+import com.entity.Unit;
+import com.entity.User;
+import com.method.NewAlgorithm;
+import com.method.Time;
 
 import java.io.IOException;
 import java.text.ParseException;

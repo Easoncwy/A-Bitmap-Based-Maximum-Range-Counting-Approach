@@ -1,10 +1,10 @@
-package InsertAndDelete;
+package com.insertdelete;
 
-import Entity.Interval;
-import Entity.Unit;
-import Entity.User;
-import Method.SortAndFind;
-import Method.Time;
+import com.entity.Interval;
+import com.entity.Unit;
+import com.entity.User;
+import com.method.SortAndFind;
+import com.method.Time;
 
 import java.util.*;
 

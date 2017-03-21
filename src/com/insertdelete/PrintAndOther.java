@@ -1,8 +1,8 @@
-package InsertAndDelete;
+package com.insertdelete;
 
-import Entity.Interval;
-import Entity.Unit;
-import Entity.User;
+import com.entity.Interval;
+import com.entity.Unit;
+import com.entity.User;
 
 import java.util.ArrayList;
 import java.util.Map;

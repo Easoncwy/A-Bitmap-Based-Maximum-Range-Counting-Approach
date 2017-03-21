@@ -1,8 +1,8 @@
-package Entity;
+package com.entity;
 
 import java.text.ParseException;
 
-import Method.Time;
+import com.method.Time;
 
 public class Interval {
 	public  String start;

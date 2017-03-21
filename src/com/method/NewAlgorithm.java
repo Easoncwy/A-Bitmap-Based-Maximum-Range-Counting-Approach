@@ -1,4 +1,4 @@
-package Method;
+package com.method;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -7,9 +7,9 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.util.*;
 
-import Entity.Interval;
-import Entity.Unit;
-import Entity.User;
+import com.entity.Interval;
+import com.entity.Unit;
+import com.entity.User;
 
 /**
  * @author supreme
@@ -54,8 +54,7 @@ public class NewAlgorithm {
 	{
 		ArrayList<Unit> compressedA = compressedMap.get(startTime);
 		ArrayList<Unit> compressedB = compressedMap.get(nextTime);
-		
-		
+
 		//ArrayList<Unit> compA = new ArrayList<Unit>(compressedA.size());
 		Stack<Unit> compA = new Stack<Unit>();
 		for (int i = compressedA.size()-1 ; i >=0 ; i--)
@@ -162,31 +161,38 @@ public class NewAlgorithm {
 		ArrayList<User> trueUserSet = new ArrayList<>();
 		String start = interval.start;
 		String end = interval.end;
-		int index = 0;
+		int flag = 0;
 		for (User user : fakeUserSet) 
 		{
-			index = user.index;
+
+			flag = user.index;
 			ArrayList<Interval> userIntervalSet = user.intervals;
-			for (int i = index; i < userIntervalSet.size(); i++) {
-				Interval userInterval = userIntervalSet.get(index);
+
+			for (int i = flag; i < userIntervalSet.size(); i++) {
+				Interval userInterval = userIntervalSet.get(i);
 				if (userInterval.Exist(start)) {
 					if(userInterval.Exist(end)){
+						if (user.userID.equals("u009273"))
+							System.out.println(user.userID);
 						trueUserSet.add(user);
-						user.index = index;
+						user.index = flag;
 						break;
 					}else{
 						//某个区间包含开始时间点，不包含结束时间点
 						//则该用户肯定不满足
+						user.index = flag;
 						break;
 					}
 				}else {
-					index++;
-					if(userInterval.bigger(end)){
-					user.index = index;
-					break;
+					flag++;
+					if(userInterval.bigger(start)){
+						break;
 					}
 				}
 			}
+
+
+
 		}
 		return trueUserSet;
 	}

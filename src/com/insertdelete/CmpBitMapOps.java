@@ -1,6 +1,6 @@
-package InsertAndDelete;
+package com.insertdelete;
 
-import Entity.Unit;
+import com.entity.Unit;
 
 import java.util.ArrayList;
 

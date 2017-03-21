@@ -1,12 +1,8 @@
-package File;
+package com.file;
 
-import Entity.Interval;
-import Entity.User;
-import Method.Time;
+import com.method.Time;
 
 import java.io.*;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Created by eason on 2017/1/6.

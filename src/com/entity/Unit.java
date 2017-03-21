@@ -1,4 +1,4 @@
-package Entity;
+package com.entity;
 
 public class Unit {
 	public int bit;

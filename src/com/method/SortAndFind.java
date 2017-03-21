@@ -1,18 +1,15 @@
-package Method;
+package com.method;
 
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.TreeSet;
 
-import Entity.Database;
-import Entity.Interval;
-import Entity.User;
+import com.entity.Interval;
+import com.entity.User;
 
 public class SortAndFind {
 	/**

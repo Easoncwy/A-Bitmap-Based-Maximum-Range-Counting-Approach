@@ -1,21 +1,20 @@
 
-package File;
+package com.file;
 
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.lang.reflect.Field;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.BitSet;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
-import Entity.Database;
-import Entity.Interval;
-import Entity.User;
-import Method.NewAlgorithm;
+import com.entity.Database;
+import com.entity.Interval;
+import com.entity.User;
+import com.method.NewAlgorithm;
 public class CodeToBitMapFileWrite {
 	/**
 	 * 给每个独特的time编码成bitmap, 写入文件
