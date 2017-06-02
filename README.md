@@ -1,4 +1,4 @@
-# A_query_algorithm_based_on_bitmap
+# A Bitmap Based Maximum Range Counting Approach
 ## abstract 
 
 This algorithm is based on bitmap structure.
