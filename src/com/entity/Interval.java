@@ -2,7 +2,7 @@ package com.entity;
 
 import java.text.ParseException;
 
-import com.method.Time;
+import com.query.Time;
 
 public class Interval {
 	public  String start;

@@ -7,8 +7,8 @@ import java.util.*;
 import com.entity.Database;
 import com.entity.Unit;
 import com.entity.User;
-import com.method.NewAlgorithm;
-import com.method.SortAndFind;
+import com.query.NewAlgorithm;
+import com.query.SortAndFind;
 import com.file.CompressedFileRead;
 import com.file.RawFileRead;
 

@@ -1,4 +1,4 @@
-package com.method;
+package com.query;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

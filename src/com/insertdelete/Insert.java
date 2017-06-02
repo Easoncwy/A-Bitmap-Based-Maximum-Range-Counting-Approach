@@ -8,7 +8,7 @@ import java.util.Set;
 import com.entity.Interval;
 import com.entity.Unit;
 import com.entity.User;
-import com.method.Time;
+import com.query.Time;
 
 public class Insert {
 	/**

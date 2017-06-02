@@ -10,7 +10,7 @@ import java.util.*;
 import com.entity.Database;
 import com.entity.Interval;
 import com.entity.User;
-import com.method.Time;
+import com.query.Time;
 /**
  * 
  * @author eason

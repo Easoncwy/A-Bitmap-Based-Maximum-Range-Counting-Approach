@@ -1,4 +1,4 @@
-package com.method;
+package com.query;
 
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -41,7 +41,7 @@ public class SortAndFind {
 		Collections.sort(allTimeArray, new Comparator<Object>() {
 			@Override
 			public int compare(Object o1, Object o2) {
-				// TODO Auto-generated method stub
+				// TODO Auto-generated query stub
 				String t1 = (String)o1;
 				String t2 = (String)o2;
 				long time1 = 0;

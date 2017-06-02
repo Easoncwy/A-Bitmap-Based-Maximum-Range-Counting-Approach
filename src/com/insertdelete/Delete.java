@@ -3,8 +3,8 @@ package com.insertdelete;
 import com.entity.Interval;
 import com.entity.Unit;
 import com.entity.User;
-import com.method.SortAndFind;
-import com.method.Time;
+import com.query.SortAndFind;
+import com.query.Time;
 
 import java.util.*;
 

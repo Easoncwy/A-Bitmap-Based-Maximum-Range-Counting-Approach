@@ -14,7 +14,7 @@ import java.util.Map;
 import com.entity.Database;
 import com.entity.Interval;
 import com.entity.User;
-import com.method.NewAlgorithm;
+import com.query.NewAlgorithm;
 public class CodeToBitMapFileWrite {
 	/**
 	 * 给每个独特的time编码成bitmap, 写入文件

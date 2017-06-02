@@ -1,6 +1,6 @@
 package com.file;
 
-import com.method.Time;
+import com.query.Time;
 
 import java.io.*;
 

@@ -1,4 +1,4 @@
-package com.method;
+package com.query;
 
 import java.io.BufferedWriter;
 import java.io.File;

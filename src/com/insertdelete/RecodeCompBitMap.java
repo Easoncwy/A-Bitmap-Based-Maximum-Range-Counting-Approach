@@ -3,8 +3,8 @@ package com.insertdelete;
 import com.entity.Interval;
 import com.entity.Unit;
 import com.entity.User;
-import com.method.NewAlgorithm;
-import com.method.Time;
+import com.query.NewAlgorithm;
+import com.query.Time;
 
 import java.io.IOException;
 import java.text.ParseException;
