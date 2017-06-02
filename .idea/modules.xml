@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/A query algorithm based on bitmap.iml" filepath="$PROJECT_DIR$/A query algorithm based on bitmap.iml" />
+      <module fileurl="file://$PROJECT_DIR$/A Bitmap Based Maximum Range Counting Approach.iml" filepath="$PROJECT_DIR$/A Bitmap Based Maximum Range Counting Approach.iml" />
     </modules>
   </component>
 </project>
