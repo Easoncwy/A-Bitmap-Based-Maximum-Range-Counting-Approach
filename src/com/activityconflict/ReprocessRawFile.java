@@ -172,23 +172,79 @@ public class ReprocessRawFile {
             //需要重新切割区间
             else if ((startTIME < rangeStartTIME) && (rangeStartTIME < endTIME))
             {
+                if ((endTIME - rangeStartTIME) >= duration)
+                {
+                    start = rangeStart;
+                    //1.设置开始时间 和 结束时间
+                    markStartEndMap.put(start, true);
+                    if (!markStartEndMap.containsKey(end)) {
+                        markStartEndMap.put(end, false);
+                    }
 
+                    //2.将有效区间插入到数据库中.
+                    if (!user.equals(preUser)) {
+                        preUser = user;
+                        User u = new User(user, new Interval(start, end));
+                        db.insert(u);
 
+                        //所有用户名
+                        allUsers.add(user);
+                        markUserMap.put(markUserFigure, u);
+                        ++markUserFigure;
+                    } else {
+                        db.insertI(new Interval(start, end));
+                    }
+                    if (startTIME < min) min = startTIME;
+                    if (endTIME > max) max = endTIME;
 
-
-
-
-
-//                count1++;
+                    //3.有效记录条数加一
+                    ++validRecordCount;
+                }
 
             }
-            else if (startTIME < rangeEndTIME && rangeEndTIME < endTIME){
-//                count2++;
-            }
+            else if (startTIME < rangeEndTIME && rangeEndTIME < endTIME)
+            {
+                if ((rangeEndTIME - startTIME) >= duration)
+                {
+                    end = rangeEnd;
+                    //1.设置开始时间 和 结束时间
+                    markStartEndMap.put(start, true);
+                    if (!markStartEndMap.containsKey(end)) {
+                        markStartEndMap.put(end, false);
+                    }
 
+                    //2.将有效区间插入到数据库中.
+                    if (!user.equals(preUser)) {
+                        preUser = user;
+                        User u = new User(user, new Interval(start, end));
+                        db.insert(u);
+
+                        //所有用户名
+                        allUsers.add(user);
+                        markUserMap.put(markUserFigure, u);
+                        ++markUserFigure;
+                    } else {
+                        db.insertI(new Interval(start, end));
+                    }
+                    if (startTIME < min) min = startTIME;
+                    if (endTIME > max) max = endTIME;
+
+                    //3.有效记录条数加一
+                    ++validRecordCount;
+                }
+
+            }
         }
-
-        System.out.println(count1 + "," + count2);
-
+        /**
+         * 把 markStartEndMap 里 value 值为 true 的 key (即所有开始时间)加到 allStartTimeArray;
+         */
+        for (String t : markStartEndMap.keySet()) {
+            allTimeArray.add(t);
+            if (markStartEndMap.get(t)) {
+                allStartTimeSet.add(t);
+            }
+        }
+        System.out.println("共读入"+ validRecordCount + "记录");
+        System.out.println("有效用户: " + db.data.size());
     }
 }
