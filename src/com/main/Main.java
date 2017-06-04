@@ -18,10 +18,10 @@ public class Main {
     public static void main(String[] args) throws IOException, ParseException, Exception {
 		ReprocessRawFile reprocessRawFile = new ReprocessRawFile();
 		String fileName = "/Users/supreme/Desktop/data/NewReadInterval";
-		String queryRange = "[2013-07-01 09:00:00,2013-07-01 21:00:00]";
+		String queryRange = "[2013-07-07 09:00:00,2013-07-07 21:00:00]";
 //		reprocessRawFile.JudgeIfCrossDay(fileName);
 
-//		reprocessRawFile.countDateRecordNumber(fileName);
+		reprocessRawFile.countDateRecordNumber(fileName);
 
 		reprocessRawFile.splitRawFile(fileName, queryRange);
 
