@@ -212,10 +212,10 @@ public class NewAlgorithm {
 	 */
 	public Map<Interval, ArrayList<User>> getMaxHashMap(
 			Map<String, ArrayList<Unit>> compressedMap,
-			int duration, 
+			long duration,
 			Map<Integer, User> markUserMap, 
 			ArrayList<String> sortedTimeArray,
-			HashSet<String> allStartTimeSet,
+			Set<String> allStartTimeSet,
 			Set<String> allUsers,
 			String output) throws Exception
 	{

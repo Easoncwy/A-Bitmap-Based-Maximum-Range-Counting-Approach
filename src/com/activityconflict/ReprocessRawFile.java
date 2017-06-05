@@ -117,7 +117,7 @@ public class ReprocessRawFile {
         String[] rangeTime = queryRange.split(",");
         String rangeStart = rangeTime[0].substring(1);
         String rangeEnd = rangeTime[1].substring(0, rangeTime[1].length() - 1);
-        System.out.println(rangeStart + "," + rangeEnd);
+        System.out.println("查询的时间范围:" + rangeStart + "," + rangeEnd);
         long rangeStartTIME = TIME.uniformTime(rangeStart);
         long rangeEndTIME = TIME.uniformTime(rangeEnd);
 
