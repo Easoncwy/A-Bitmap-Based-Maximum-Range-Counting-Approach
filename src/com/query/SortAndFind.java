@@ -27,6 +27,45 @@ public class SortAndFind {
 		}
 		return user;
     }
+
+	/**
+	 * 把所有时间区间按开始时间顺序从小到大排序
+	 *
+	 * @param intervals 所有时间区间(无序)
+	 * @return 所有时间区间(有序)
+	 * @throws ParseException
+     */
+	public ArrayList<Interval> sortAllIntervals(ArrayList<Interval> intervals){
+		Time TIME = new Time();
+		Collections.sort(intervals, new Comparator<Object>() {
+			@Override
+			public int compare(Object o1, Object o2) {
+				// TODO Auto-generated query stub
+				Interval inter1 = (Interval) o1;
+				Interval inter2 = (Interval) o2;
+				long time1 = 0;
+				try {
+					time1 = TIME.uniformTime(inter1.start);
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				long time2 = 0;
+				try {
+					time2 = TIME.uniformTime(inter2.start);
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				return (time1 > time2) ? 1 :(time1 == time2) ? 0 : -1 ;
+			}
+
+		});
+		return intervals;
+	}
+
+
+
 	
 	
 	/**

@@ -241,8 +241,10 @@ public class NewAlgorithm {
 		Map<Interval, ArrayList<User>> trueMap = new HashMap<>();
 		Set<ArrayList<User>> tempSet = new HashSet<>();
 
-		for (int i = 0; i < sortedTimeArray.size(); i++ ) {
-			if(allStartTimeSet.contains(sortedTimeArray.get(i))){
+		for (int i = 0; i < sortedTimeArray.size(); i++ )
+		{
+			if(allStartTimeSet.contains(sortedTimeArray.get(i)))
+			{
 				String startTime = sortedTimeArray.get(i);
 				String endTime = null;
 				ArrayList<User> preUserSet = new ArrayList<>();
