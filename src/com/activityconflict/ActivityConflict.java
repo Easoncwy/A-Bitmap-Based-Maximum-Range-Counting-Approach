@@ -13,18 +13,19 @@ import java.util.Map;
  * Created by eason on 2017/6/2.
  */
 public class ActivityConflict {
-    /*
-    public ActivityConflict(
+
+    public Map<ArrayList<Interval>, Integer> ActivityConflict (
             Map<Interval, Integer> map1,
             Map<Interval, Integer> map2,
             Map<Interval, Integer> map3)
     {
 
-        Map<List<Interval>, Integer> plans = new HashMap<>();
+        Map<ArrayList<Interval>, Integer> plans = new HashMap<>();
+        int count = 0;
 
         for (Interval inter1:map1.keySet())
         {
-            List<Interval> intervals = new ArrayList<>();
+            ArrayList<Interval> intervals = new ArrayList<>();
             intervals.add(inter1);
             for (Interval inter2:map2.keySet())
             {
@@ -32,15 +33,26 @@ public class ActivityConflict {
                 for (Interval inter3:map3.keySet())
                 {
                     intervals.add(inter3);
-
+                    try {
+                        if (isConflict(intervals)){
+                            ++count;
+                            System.out.println("活动不发生冲突");
+                            int sum = map1.get(inter1) + map2.get(inter2) + map3.get(inter3);
+                            plans.put(intervals, sum);
+                        }
+                    }catch (Exception e){
+                        System.err.println("catch a Exception!");
+                    }
 
                 }
 
             }
         }
+        System.out.println("有" + count + "个活动不发生冲突");
+        return plans;
 
     }
-    */
+
 
 
     public boolean isConflict(ArrayList<Interval> intervals) throws Exception{
@@ -63,7 +75,16 @@ public class ActivityConflict {
 
         }
         return isConflict;
+    }
 
+    public void outputPlans(Map<ArrayList<Interval>, Integer> plans){
+        for (ArrayList<Interval> list: plans.keySet()) {
+            for (int i = 0; i < list.size(); i++) {
+                System.out.printf(list.get(i) + ",");
+            }
+            System.out.println("-->" + plans.get(list));
+
+        }
     }
 
 
