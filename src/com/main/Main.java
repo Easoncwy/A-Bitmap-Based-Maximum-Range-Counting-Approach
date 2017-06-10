@@ -18,11 +18,7 @@ import com.file.CompressedFileRead;
 import com.file.RawFileRead;
 
 public class Main {
-
 	public static void main(String[] args) throws IOException, ParseException, Exception {
-
-		/*
-
 		//第一个活动
 		Map<Interval, Integer> map1 = new HashMap<>();
 		String start1 = "2013-07-07 13:05:46";
@@ -48,7 +44,7 @@ public class Main {
 		String start3 = "2013-07-07 13:06:13";
 		String end3 = "2013-07-07 13:08:13";
 
-		String start4 = "2013-07-07 13:06:15";
+		String start4 = "2013-07-07 13:06:23";
 		String end4 = "2013-07-07 13:08:23";
 		Interval inter3 = new Interval(start3, end3);
 		Interval inter4 = new Interval(start4, end4);
@@ -72,19 +68,25 @@ public class Main {
 		ActivityConflict activityConflict = new ActivityConflict();
 		Map<ArrayList<Interval>, Integer> plans = activityConflict.ActivityConflict(map1, map2, map3);
 		activityConflict.outputPlans(plans);
-		*/
+
+
+		/*
+
 		String start_x = "2013-07-07 15:05:50";
 		String end_x = "2013-07-07 15:08:59";
 
 		String start_y = "2013-07-07 13:06:13";
 		String end_y = "2013-07-07 13:08:13";
 
-		String start_z = "2013-07-07 14:47:30";
-		String end_z = "2013-07-07 14:48:33";
+		String start0 = "2013-07-07 13:06:23";
+		String end0 = "2013-07-07 13:08:30";
+
+//		String start_z = "2013-07-07 14:47:30";
+//		String end_z = "2013-07-07 14:48:33";
 
 		Interval inter_x = new Interval(start_x, end_x);
 		Interval inter_y = new Interval(start_y, end_y);
-		Interval inter_z = new Interval(start_z, end_z);
+		Interval inter_z = new Interval(start0, end0);
 		ArrayList<Interval> intervals = new ArrayList<>();
 		intervals.add(inter_x);
 		intervals.add(inter_y);
@@ -96,6 +98,7 @@ public class Main {
 			System.out.println("活动发生冲突");
 
 		}
+		*/
 
 
 

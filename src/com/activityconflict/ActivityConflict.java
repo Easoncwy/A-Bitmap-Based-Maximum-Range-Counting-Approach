@@ -25,27 +25,26 @@ public class ActivityConflict {
 
         for (Interval inter1:map1.keySet())
         {
-            ArrayList<Interval> intervals = new ArrayList<>();
-            intervals.add(inter1);
+
             for (Interval inter2:map2.keySet())
             {
-                intervals.add(inter2);
                 for (Interval inter3:map3.keySet())
                 {
+                    ArrayList<Interval> intervals = new ArrayList<>();
+                    intervals.add(inter1);
+                    intervals.add(inter2);
                     intervals.add(inter3);
                     try {
-                        if (isConflict(intervals)){
+                        if (!isConflict(intervals)){
                             ++count;
-                            System.out.println("活动不发生冲突");
+                            System.out.println("不发生冲突");
                             int sum = map1.get(inter1) + map2.get(inter2) + map3.get(inter3);
                             plans.put(intervals, sum);
                         }
                     }catch (Exception e){
                         System.err.println("catch a Exception!");
                     }
-
                 }
-
             }
         }
         System.out.println("有" + count + "个活动不发生冲突");
@@ -80,18 +79,10 @@ public class ActivityConflict {
     public void outputPlans(Map<ArrayList<Interval>, Integer> plans){
         for (ArrayList<Interval> list: plans.keySet()) {
             for (int i = 0; i < list.size(); i++) {
-                System.out.printf(list.get(i) + ",");
+                System.out.printf("[" + list.get(i).getStart() + "," + list.get(i).getEnd() + "]" + ",");
             }
             System.out.println("-->" + plans.get(list));
 
         }
     }
-
-
-
-
-
-
-
-
 }
